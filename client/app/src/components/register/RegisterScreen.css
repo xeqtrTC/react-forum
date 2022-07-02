@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@500&display=swap');
+
+
+.register-container {
+    font-family: 'M PLUS 2', sans-serif;
+
+    padding: 4rem 2rem;
+}
+.register-first {
+    display: flex;
+    justify-content: center;
+}
+.register-inputs {
+    width: 40%;
+    
+}
+.register-first span {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+}
+.register-inputs-info {
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+.register-inputs-info label {
+    font-size: 16px;
+    font-weight: 300;
+}
+.register-inputs-info input {
+    padding: 0 24px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #b6b6b6;
+
+    height: 3rem;
+    margin-top: 0.5rem;
+}
+.register-inputs-info input:focus {
+    border: 1px solid rgb(33, 33, 33);
+}
+.register-inputs-button {
+    margin-top: 2rem;
+}
+.register-inputs-button button {
+    border-radius: 5px;
+    background-color: rgb(250,0,47);
+    border: none;
+    outline: none;
+    width: 100%;
+    color: #fff;
+    padding: 1rem 0;
+    cursor: pointer;
+}
+.register-inputs-button button:hover {
+    background-color: rgb(180, 0, 27);
+}
+.register-inputs-login {
+    margin-top: 2rem;
+
+    text-align: center;
+}
+.register-inputs-login a {
+    text-decoration: none;
+    color:  #718096;
+    font-size: 15px;
+    cursor: pointer;
+
+}
+.register-inputs-login a:hover {
+    color: #FA002F
+
+}
