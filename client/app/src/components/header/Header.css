@@ -33,7 +33,7 @@
 }
 .header-second-div li, .test li {
     padding: 0 2rem;
-    color: #8B8B8B;
+    /* color: #8B8B8B; */
     cursor: pointer;
     transition: color 0.2s ease-out 100ms;
 
@@ -52,7 +52,10 @@
     color: black;
 
 }
-
+.header-img {
+    width: 0.2rem;
+    height: 0.2rem;
+}
 
 
 

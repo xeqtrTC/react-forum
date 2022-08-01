@@ -10,8 +10,9 @@ import { useGetCategoriesQuery } from '../../../redux/categoryApi';
 import { selectCurrentUser } from '../../../redux/authSlice';
 export default function ForumScreen() {
     const [color, setColor] = useState(true)
-    const user = useSelector(selectCurrentUser)
-    console.log(user); 
+    const [clicked, setClicked] = useState(true);
+
+    
     const { data, isLoading, isError } = useGetCategoriesQuery();
     const slicedData = data?.slice(0,3);
     const secondSlicedData = data?.slice(3, 8);
@@ -23,7 +24,7 @@ export default function ForumScreen() {
         {
             isLoading && <LoadingBox />
         }
-        <Header children={color} />
+        <Header children={color} clicked={clicked} />
         <div className='forum-screen-container'>
 
             <div className='forum-screen-banner'>

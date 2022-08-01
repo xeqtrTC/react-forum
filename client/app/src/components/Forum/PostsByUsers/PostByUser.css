@@ -3,8 +3,19 @@
     margin: 2rem auto;
 }
 .postbyuser-button {
-    border: 1px solid black;
     padding: 1rem 0;
+}
+.forum-page-full svg {
+    vertical-align: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.spantitle {
+    vertical-align: center;
+}
+.forum-page-full p {
+    display: flex;
+    align-items: center;
 }
 .postbyuser-button button {
     padding: 0.5rem;
@@ -24,7 +35,7 @@
     display: flex;
 }
 .postbyuser-leftside {
-    border: 1px solid blue;
+    border-right: 1px solid grey;
     flex: 0;
     padding: 1.5rem;
 }
@@ -45,7 +56,6 @@
 .postbyuser-content {
     flex: 1;
     padding: 1.5rem;
-    border: 1px solid red
 }
 .postbyuser-posts {
     font-size: 11px;
@@ -59,4 +69,67 @@
 .postbyuser-content-content {
     font-size: 13px;
     margin-top: 0.7rem;
+}
+.post-reply {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    flex-direction: column;
+    background-color: #46494F;
+    height: 20%;
+    padding: 3rem;
+}
+.post-reply-input {
+    margin: 0 auto;
+    width: 40%;
+    padding: 1rem;
+
+}
+.post-reply-first-input {
+    display: flex;
+    justify-content: center;
+}
+
+.post-reply-first-input input {
+    color: #C7BCA0;
+    border: none;
+    background-color: #3C3E43;
+    outline: none;
+    border: 1px solid #34373B;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    width: 100%;
+}
+.post-reply-second-input {
+    display: flex;
+    margin-top: 1.5rem;
+    justify-content: center;
+}
+.post-reply-second-input textarea {
+    color: #C7BCA0;
+    border: none;
+    background-color: #3C3E43;
+    outline: none;
+    height: 6rem;
+    padding: 0.4rem 0.5rem;
+    width: 100%;
+    border: 1px solid #34373B;
+    border-radius: 5px;
+}
+.post-reply-button {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+.post-reply-button button {
+    padding: 0.5rem;
+    background-color: #FF133F;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+}
+.post-reply-button button:hover {
+    background-color: rgb(180, 0, 27);
 }

@@ -3,6 +3,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const requestIp = require('request-ip');
+const passport = require('../passport/passport');
 
 const userRouter = express.Router();
 
@@ -20,11 +21,11 @@ const handleRegister =  async (req, res) => {
     const sql = 'INSERT INTO users SET ?';
     connection.query('SELECT * FROM users WHERE username = ?', [username], (err, rows) => {
         if(rows.length > 0) {
-            res.send({message: 'Something went wrong. Try again.'})
+            res.status(401).json({message: 'Username already in use.'})
         } else {
             connection.query('SELECT * FROM users WHERE email = ?', [email], (err, result) => {
                 if(result.length > 0) {
-                    res.send({ message: 'Something went wrong. Try again.'})
+                    res.status(401).json({ message: 'Email already in use.'})
                 } else {
                     connection.query(sql, {username: username, email: email, password: hashedPassword, ipAddress: ipAddress, date: new Date().toISOString()}, (err, resultInsert) => {
                         if(resultInsert) {
@@ -40,13 +41,14 @@ const handleRegister =  async (req, res) => {
     })
 }
 
-const handleLogin = async (req, res) => {
+const handleLogin = async (req, res, done) => {
     const cookies = req.cookies;
     console.log(cookies);
     const { user, password } = req.body;
     console.log(user, password);
     
    connection.query('SELECT * from users WHERE username = ?', [user], (err, rows) => {
+    console.log(rows);
         if(rows.length > 0) {
             bcrypt.compare(password, rows[0].password, (error, response) => {
                 if(response) {
@@ -54,16 +56,15 @@ const handleLogin = async (req, res) => {
 
                     
                     const id = rows[0].uid
-                    const accessToken = jwt.sign({
-                        "UserInfo": {
-                            'username': rows[0].username,
-                            'isAdmin': rows[0].isAdmin,
-                            'isModerator': rows[0].isModerator,
-                            'isBanned': rows[0].isBanned
-                        }
-                    }, process.env.jwtsecret, {
-                        expiresIn: 3000
-                    })
+                    const accessToken = jwt.sign(
+                        {
+                           "UserInfo": {
+                                'username': rows[0].username
+                           }
+                        }, 
+                            process.env.jwtsecret, {
+                            expiresIn: '10s'
+                        })
                     const last_login = rows[0].last_login;
                     const newRefreshToken = jwt.sign(
                         {
@@ -71,33 +72,29 @@ const handleLogin = async (req, res) => {
                             
                         },
                         process.env.jwtsecret,
-                        { expiresIn: 300 }
+                        { expiresIn: '15s' }
                     );
+
+                    let newRefreshTokenArray = !cookies?.jwt ? rows[0].refreshToken : connection.query('UPDATE users SET refreshToken = ? where username = ?', [0, user])
                     
-                    // let newRefreshTokenArray = !cookies?.jwt ? rows[0].refreshToken : rows[0].refreshToken.filter((rt) => rt !== cookies.jwt);
-
-                   
-                    // if (cookies?.jwt) {
-                    //     const refreshToken = cookies.jwt;
-                    //     const foundToken = rows[0].refreshToken.exec();
-
-                    //     if(!foundToken) {
-                    //         newRefreshTokenArray = [];
-                    //     }
+                    if(cookies?.jwt) {
+                        const refreshToken = cookies.jwt;
+                        const foundToken = rows[0].refreshToken;
                         
-                    //     res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true})
-
-                    // }
-                    const newDate = new Date().toISOString();
-                    // rows[0].refreshToken = [...newRefreshTokenArray, newRefreshToken]
-                    connection.query('UPDATE users SET last_login = ? where uid = ?', [newDate, rows[0].uid])
-                    res.cookie('jwt', newRefreshToken, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 24 * 60 * 60 * 1000})
-                    const response = {
-                        message: 'Logged successfully',
-                        accessToken,
-                        newRefreshToken
+                        if(!foundToken) {
+                            newRefreshTokenArray = []
+                        }
+                        res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true})
                     }
-                    res.cookie('jwt', accessToken, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 24 * 60 * 60 * 1000})
+
+                    connection.query('UPDATE users SET refreshToken = ? where username = ?', [newRefreshToken, user])
+
+
+
+                    res.cookie('jwt', newRefreshToken, { httpOnly: true, secure: true, sameSite: 'none', maxAge: 24 * 60 * 60 * 1000 })
+
+
+                    console.log( {accessToken } )
                     res.json({ accessToken })
         } else {
             res.status(401).json({ 'message': 'Wrong password'})
@@ -108,50 +105,120 @@ const handleLogin = async (req, res) => {
         }
    })
 }
-
-const handleLogout = async (req, res) => {
-    const cookies = req.cookies;
-
-    if(!cookies.jwt) return res.sendStatus(201);
-    
-    res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true})
-
-    res.sendStatus(204);
-
-}
-
-
-const handleRefreshToken = async (req, res) => {
-    const { username } = req.body
-    const cookies = req.cookies;
-
-    if(!cookies?.jwt) return res.sendStatus(401);
-    const refreshToken = cookies.jwt;
-    res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
-    
-    connection.query('SELECT * from users where username = ?', [username], (err, result) => {
-        if(!result) {
-            jwt.verify(
-                refreshToken,
-                jwtsecret,
-                async (err, decoded) => {
-                    if(err) return res.sendStatus(403);
-
-                    const hackedUser = rows[0].decoded.username;
-                    hackedUser.refreshToken = [];
-                    const result = hackedUser.save();
-                }    
-            )
-            return res.sendStatus(403);
+const handleLoginPassport = (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+        if(err) {
+            console.log(err);
+            return;
         }
-        const newRefreshTokenArray = rows[0].refreshToken.filter((rt) => rt !== refreshToken);
+        if(!user) {
+            res.status(401).json(info.message)
+            return;
+        }
+        req.logIn(user, (err) => {
+            if(err) {
+                console.log(err);
+                console.log('session wrong')
+            } else {
+                const cookies = req.cookies;
+                console.log(cookies);
 
-        
-    })
+                const accessToken = jwt.sign(
+                    {
+                       "UserInfo": {
+                            'username': user.username
+                       }
+                    }, 
+                        process.env.jwtsecret, {
+                        expiresIn: '10s'
+                    })
+                const last_login = user.last_login;
+                const newRefreshToken = jwt.sign(
+                    {
+                        'username': user.username,
+                        
+                    },
+                    process.env.jwtsecret,
+                    { expiresIn: '15s' }
+                );
+
+                // let newRefreshTokenArray = !cookies?.jwt ? user.refreshToken : connection.query('UPDATE users SET refreshToken = ? where username = ?', [0, user])
+                
+                if(cookies?.jwt) {
+                    const refreshToken = cookies.jwt;
+                    const foundToken = user.refreshToken;
+                    
+                    if(!foundToken) {
+                        newRefreshTokenArray = []
+                    }
+                    res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true})
+                }
+
+                connection.query('UPDATE users SET refreshToken = ? where username = ?', [newRefreshToken, user.username])
+
+
+
+                res.cookie('jwt', newRefreshToken, { httpOnly: true, secure: true, sameSite: 'none', maxAge: 24 * 60 * 60 * 1000 })
+
+
+                console.log( {accessToken } )
+                res.json({ accessToken })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                // res.json(req.user);
+
+            }
+        })
+    })(req, res, next);
 }
+
+
+// const handleLogout = async (req, res) => {
+//     const cookies = req.cookies;
+
+//     if(!cookies.jwt) return res.sendStatus(201);
+    
+//     res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true})
+
+//     res.sendStatus(204);
+
+// }
+
+
+
+const getUserInfo = (req, res) => {
+
+    const { username } = req.body;
+    console.log(username);
+    connection.query('SELECT * FROM users WHERE username = ? ', [req.params.username], (err, result) => {
+        console.log(result);
+        if(!err) {
+            res.json({ result })
+        } else {
+            console.log(err);
+        }
+    })
+    
+}
+
+
 
 module.exports = {
     handleRegister,
     handleLogin,
-    handleLogout
+    getUserInfo,
+    handleLoginPassport
+    
 }

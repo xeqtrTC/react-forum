@@ -1,0 +1,11 @@
+.pagination-container ul {
+    display: flex;
+    list-style-type: none;
+}
+.pagination-container li {
+    background-color: #FA002F;
+    padding: 0 0.4rem;
+    color: #fff;
+    margin-left: 0.2rem;
+    cursor: pointer;
+}

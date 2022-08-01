@@ -5,6 +5,7 @@ import { selectCurrentToken } from '../../redux/authSlice';
 import React from 'react'
 
 function RequireAuth() {
+  console.log(Outlet);
     const token = useSelector(selectCurrentToken)
     const location = useLocation();
   return (

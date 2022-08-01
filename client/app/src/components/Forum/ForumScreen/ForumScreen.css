@@ -33,6 +33,7 @@
     padding: 1rem;
     height: 3rem;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 .forum-screen-container p {
@@ -45,7 +46,7 @@
 }
 .forum-screen-category-name {
     margin-left: 1rem;
-    width: 80%;
+    width: 85%;
 }
 .community-category-name {
     color: black;
@@ -53,10 +54,12 @@
 
 }
 .community-category-name a {
+    transition: color 0.2s ease-out 100ms;
+
     color: black;
     text-decoration: none;
 }
-.community-category-name:hover {
+.community-category-name a:hover {
     color: #FF133F;
     cursor: pointer;
 }

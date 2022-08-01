@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import Header from '../../header/Header';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { TbBrandPagekit } from 'react-icons/tb';
 import Footer from '../../Footer/Footer';
+import { useGetPostsPerCategoryQuery } from '../../../redux/categoryApi';
 import LoadingBox from '../../LoadingBox/LoadingBox';
 import './ForumPage.css';
 export default function ForumPage() {
     const params = useParams();
     const {category} = params;
-    console.log(category);
-    const { data, isLoading } = ({category}) 
+    const { data, isLoading, isError } = useGetPostsPerCategoryQuery(category)
+    console.log(category, data);
     const [color, setColor] = useState(true)
     console.log(data);
 
@@ -29,6 +30,9 @@ export default function ForumPage() {
                 </div>
             </div>   
             <div className='forum-page-second-container'>
+                     <div className='postbyuser-button'>
+                        <Link to={`/posting/${category}`}><button>Post a reply</button></Link>
+                     </div>
                 <div className='forum-page-posts'>
                     <div className='forum-page-topic'>
                         <p>Topic</p>
@@ -37,16 +41,18 @@ export default function ForumPage() {
                 {
                     data?.length === 0 && <p>There isn't any posts yet.</p>
                 }
+                <div className='forum-page-real-post' >
                 {
+
                         data?.map((post) => {
-                            const { posttitle, postusername, postdate } = post
+                            const { posttitle, postusername, postdate,  } = post
                             return (
-                                <div className='forum-page-real-post'>
+                                <div className='forumpage-div-test'>
                                     <div className='forum-page-icon'>
                                         <TbBrandPagekit />
                                     </div>
                                     <div className='forum-page-title'>
-                                        <p className='community-category-name'>{posttitle}</p>
+                                        <Link to={`/forum/${category}/${posttitle}`}> <p className='community-category-name'>{posttitle}</p></Link>
                                         <span className='forum-page-by'>by:</span> <span className='forum-page-user'>{postusername}</span> <span className='forum-page-by'>22.2.22</span>
                                     </div>
                                     <div className='forum-screen-last-post'>
@@ -58,10 +64,12 @@ export default function ForumPage() {
                                         </div>
 
                                     </div>
-                                </div>
+                                    </div>
                             )
                         })
                     }
+                                                    </div>
+
                     
                 </div>
             </div>

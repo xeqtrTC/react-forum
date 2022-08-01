@@ -33,6 +33,7 @@
 .login-inputs {
     margin-top: 1rem;
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 .login-inputs svg {
@@ -90,4 +91,8 @@
 }
 .login-inputs-links a {
     text-decoration: none;
+}
+.text-password { 
+    position: absolute;
+    margin-left: 10.5%;
 }

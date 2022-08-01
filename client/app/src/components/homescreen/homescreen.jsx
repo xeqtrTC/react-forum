@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './homescreen.css';
 import Header from '../header/Header';
 import Footer from '../Footer/Footer';
 export default function Homescreen() {
+  const [clicked, setClicked] = useState(true);
+
   return (
     <>
-        <Header />
+        <Header color={clicked}/>
           <div className='homescreen-container'>
             <div className='homescreen-second-container'>
                 <div className='homescreen-header'>
