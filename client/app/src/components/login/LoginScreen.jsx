@@ -3,9 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlineUser, AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { FiLock } from 'react-icons/fi'
 import { motion , AnimatePresence } from 'framer-motion';
-import { useLoginMutation } from '../../redux/authApi';
+import { useLoginMutation, useUserStateQuery } from '../../redux/authApi';
 import { setCredentials } from '../../redux/authSlice';
 import { useDispatch } from 'react-redux';
+
 
 
 import './LoginScreen.css';
@@ -19,29 +20,32 @@ export default function LoginScreen() {
     const navigate = useNavigate();
     const [login, { isLoading }] = useLoginMutation();
 
+
    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        try {
-            const userData = await login({ username, password}).unwrap();
-            console.log(userData);
-            dispatch(setCredentials({ ...userData, username}))
-            setUsername('');
-            setPassword('');
-            navigate('/forum')
-        } catch (error) {
-            const { data } = error;
-            console.log(error)
-            if (data === "Username does not exist") {
-                setError('User does not exist')
-            } else if (data === 'Wrong password') { 
-                setError('Wrong password, try again.')
+        
+        if(username && password) {
+            try {
+                await login({ username, password}).unwrap();;
+                // console.log('asesaesaesaesae', userData);
+                // dispatch(setCredentials({ ...userData}))
+                setUsername('');
+                setPassword('');
+                navigate('/forum')
+            } catch (error) {
+                const { data } = error;
+                // console.log(data)
+                // setError(data)
+                
+                setError(data.message ? data.message : data)
+                
+                console.log(error);
             }
-            
-            
-            console.log(error);
+        } else {
+            // setError('We need username and passsword to continue')
         }
     }
     // useEffect(() => {

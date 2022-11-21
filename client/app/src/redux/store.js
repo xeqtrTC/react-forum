@@ -1,5 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { usegetCategoryQuery } from './slices/postSlice';
+import { setupListeners } from "@reduxjs/toolkit/query"
+
 import { apiSlice } from './api';
 import authReducer  from './authSlice'
 

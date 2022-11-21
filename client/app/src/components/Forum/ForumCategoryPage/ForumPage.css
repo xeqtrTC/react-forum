@@ -1,10 +1,7 @@
 .forum-page-second-container {
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
 
-}
-.forum-page-second-container {
-    margin-top: 2rem;
 }
 .forum-page-first {
     background-color: #F0F0F0;
@@ -13,8 +10,11 @@
     margin: 0;
     padding: 0;
 }
+.forum-page-posts {
+    margin-top: 1rem;
+}
 .forum-page-full {
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
     padding: 2rem 0;
 }
@@ -46,6 +46,12 @@
 .forum-page-icon {
     padding: 1rem;
 }
+.forum-page-subcategories-title {
+    padding: 0.5rem 1rem;
+}
+.forum-page-subcategories-title a {
+    text-decoration: none;
+}
 
 .last-post-p  span {
     color: #9D9999;
@@ -71,14 +77,67 @@
     color: #46494F;
 
 }
+.forum-page-title-link {
+    display: flex;
+    align-items: center;
+}
+.forum-page-title-link svg {
+    margin-left: 0.5rem;
+}
 .forum-page-title {
     width: 100%;
+    padding: 0.5rem;
 }
 .categorypage-button {
     padding: 1rem 0;
 
 }
-.categorypage-button {
+.forum-screen-last-post  {
+    font-size: 12px;
+}
+.forum-screen-last-post-p {
+    width: 100%;
+    display: flex;
+    color: #46494F;
+
+    justify-content: right;
+}
+.community-category-name {
+    color: black;
+    transition: color 0.2s ease-out 100ms;
+
+}
+.community-category-name a {
+    transition: color 0.2s ease-out 100ms;
+
+    color: black;
+    text-decoration: none;
+}
+.community-category-name a:hover {
+    color: #FF133F;
+    cursor: pointer;
+}
+.forum-screen-last-post-span {
+    display: flex;
+}
+.forum-screen-last-post-span span {
+    margin-left: 0.5rem;
+}
+.last-post-p {
+    color: #9D9999;
+
+}
+.last-post-span-black {
+    color: #46494F;
+
+}
+.openmenu {
+    padding: 1rem 0;
+}
+.postbyuser-button  {
+    padding: 1rem 0 1rem 0;
+}
+.categorypage-button, .postbyuser-button button {
     padding: 0.5rem;
     background-color: #FF133F;
     border: none;
@@ -89,4 +148,522 @@
 }
 .categorypage-button button:hover {
     background-color: rgb(180, 0, 27);
+}
+.addsubforum-popup-container {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 0;
+    width: 50%;
+}
+.onClickOpen-category-menu {
+    width: 40%;
+    height: 20%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 1rem;
+   
+}
+.onclickopen-closewindow-category-menu {
+    text-align: end;
+    transition: 0.2s ease-in;
+
+}
+.onclickopen-middle-category-menu {
+    display: flex;
+    align-items: center;
+    height: 80%;
+}
+.onclickopen-closewindow-category-menu svg:hover {
+    scale: 1.3;
+    transition: 0.2s ease-in;
+    cursor: pointer;
+}
+.onclick-input-category-menu input {
+    width: 20rem;
+    border: 1px solid black;
+    outline: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+.addsubforum-popup-container {
+    padding: 0.5rem;
+}
+.addsubforum-popup {
+    display: flex;
+    justify-content: center;
+}
+
+
+.addsubforum-input input {
+    padding: 0.5rem;
+    border: 1px solid black;
+    border-radius: 5px;
+    outline: none;
+    width: 13rem;
+}
+.addsubforum-input {
+    display: flex;
+    margin-top: 1rem;
+}
+.addsubforum-input-info {
+    width: 100%;
+}
+.addsubforum-close {
+    display: flex;
+    justify-content: flex-end;
+    transition: 0.2s ease-in;
+
+}
+.addsubforum-input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.addsubforum-close svg:hover {
+    cursor: pointer;
+    scale: 1.2;
+    transition: 0.2s ease-in;
+}
+.addsubforum-button {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+.addsubforum-button button {
+    padding: 0.5rem;
+    background-color: #FF133F;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+}
+.addsubforum-button button:hover {
+    background-color: rgb(180, 0, 27);
+
+}
+.input-info-span {
+    text-align:start;
+}
+.addsubforum-input-holder {
+    margin-left: 1rem;
+}
+.addtheme-container {
+    padding: 1rem;
+    background-color: #fff;
+    width: 70%;
+    border-radius: 5px;
+    max-height: 80%;
+    overflow-y: scroll;
+}
+.addtheme-container::-webkit-scrollbar {
+    display: none;
+}
+.addtheme-container {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+
+.addtheme-input-container input {
+    padding: 0.5rem;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid black;
+
+}
+.text-between {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.addtheme-input-container {
+    display: flex;
+    margin-top: 1rem;
+}
+.addtheme-input-container-input {
+    margin-left: 1rem;
+}
+.addtheme-input-container-name {
+    width: 15%;
+}
+.addpost-input-container-name {
+    width: 20%;
+}
+.addtheme-editor-container {
+    margin-top: 2rem;
+}
+.addtheme-input-container-input select {
+    border: 1px solid black;
+    padding: 0.5rem;
+    outline: none;
+    width: 15rem;
+    border-radius: 5px;
+}
+.remove-grid {
+    width: 100%;
+    height: 20rem;
+}
+
+.removeThemeOrSub-buttons button {
+    margin-top: 1rem;
+}
+.removeThemeOrSub-button-holder {
+    display: flex;
+    flex-direction: column;
+    width: 10rem
+}
+.removeThemeOrSub-button-holder button {
+    padding: 0.5rem;
+    background-color: #FF133F;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+.deleteButtonGrid    {
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+    
+}
+.editButtonGrid {
+    height: 1rem;
+    width: 2rem;
+    cursor: pointer;
+}
+.success-delete {
+    background-color: rgb(41, 194, 41);
+    padding: 0.5rem;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+}
+.error {
+    background-color: #FF133F;
+    padding: 0.5rem;
+    text-align: center;
+    border-radius: 5px;
+    color: #fff;
+}
+.category-error-messsage {
+    margin-top: 2rem;
+    background-color: #FF133F;
+    padding: 1rem;
+    border-radius: 5px;
+    color: #fff;
+
+}
+.addsubforum-error-messsage {
+        background-color: #FF133F;
+        padding: 0.5rem;
+        text-align: center;
+        border-radius: 5px;
+        color: #fff;
+    
+    
+}
+.category-error-messsage p {
+    margin: 0;
+}
+.onclickopen-container-category {
+    transition: ease-in 0.2s;
+
+    width: 100%;
+    position: fixed;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.removeposts-container {
+    padding: 1rem;
+    background-color: #fff;
+    width: 70%;
+    
+    max-height: 80%;
+    border-radius: 5px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+.removeposts-container::-webkit-scrollbar {
+    display: none;
+  }
+  .removeposts-container table {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  /* .removeposts-container tr {
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  */
+  .removeposts-container td  {
+    padding: 0.5rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  } 
+
+  .onClickOpen {
+    position: fixed;
+    transition: ease-in 0.2s;
+
+    border: 1px solid #011627;
+    border-radius: 5px;
+    display: flex;
+    flex-direction:column;
+    background-color: #FDFFFC;
+    height: 15%;
+    padding: 10px;
+    width: 40%;
+    color: #011627;
+  
+    
+}
+
+.onclickopen-container {
+    transition: ease-in 0.2s;
+
+    width: 100%;
+    position: fixed;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.onclickopen-closewindow {
+    display: flex;
+    justify-content: flex-end;
+}
+.onclickopen-closewindow svg, .onedit-close svg {
+    transition: ease-in 0.2s;
+
+    cursor: pointer;
+}
+.onclickopen-closewindow svg:hover, .onedit-close svg:hover {
+    transform: scale(1.2);
+    transition: ease-in 0.2s;
+
+}
+.onclickopen-middle {
+    display: flex;
+    justify-content: center;
+}
+.onclickopen-choose {
+    margin-top: 2rem;
+    display: flex;
+    justify-content:center;
+}
+.onclickopen-choose button {
+    background-color: #FF133F;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 0.5rem;
+    transition: ease-in 0.2s;
+
+    color: #fff;
+
+}
+.onclickopen-choose button:hover {
+    transition: ease-in 0.2s;
+    transform: scale(1.2);
+}
+.locked-container {
+    color: #fff;
+    width: 85%;
+    margin: 0 auto;
+}
+.locked-container p {
+    margin: 0;
+    padding: 0;
+}
+.postbyuser-date {
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    margin-left: 1rem;
+    font-size: 13px;
+}
+.openmenu {
+    transition: all ease-in-out 0.5s;
+}
+.openmenu-container {
+    
+    background-color: #fff;
+    position: absolute;
+    
+    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 5px;
+    animation-name: grow-box;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-in;
+}
+.openmenu-container ul {
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    list-style-type: none;
+}
+.openmenu-container ul li {
+    display: flex;
+    align-items: center;
+    padding: 0.2rem 5rem 0.2rem 0.2rem;
+}
+.openmenu-container ul li svg {
+    padding: 0.2rem;
+    height: 2rem;
+    margin-right: 0.3rem;
+    display: flex;
+    align-items: center;
+}
+.openmenu-container ul li:hover {
+    background-color: rgb(202, 202, 202);
+    cursor: pointer;
+    transition: 50ms ease-in;
+}
+.openmenu svg {
+    width: 1.2rem;
+    height: 1.3rem;
+    cursor: pointer;
+}
+.select-option-container {
+    display: flex;
+    justify-content: center;
+}
+.select-option-container select {
+    padding: 0.5rem;
+    outline: none;
+    border-color: grey;
+    margin-left: 1rem;
+    border-radius: 5px;
+
+}
+.container-move {
+    
+    width: 100%;
+    height: 100%;
+}
+.post-reply-error {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    background-color: #FF133F;
+    border-radius: 8px;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+@keyframes grow-box {
+   
+}
+
+
+   .ql-editor {
+    max-height: 90% !important;
+  } 
+  
+  
+  /* .paginationBttns a:hover {
+  } */
+  
+  .div-quoted {
+    background-color: red;
+  }
+/* blockquote {
+    background-color: #ececec;
+}
+.acabTest {
+    background-color: #ececec;
+
+} */
+.ql-syntax {
+    background-color: #f1f1f1;
+    /* color: #fff; */
+    padding: 0.5rem;
+    border-radius: 6px;
+      pointer-events: none;
+    
+
+}
+.onedit-container {
+    background-color: #fff;
+    width: 80%;
+    overflow: hidden;
+    overflow-y: scroll;
+    margin: 0 auto;
+    padding: 1rem;
+    /* min-height: 40%; */
+    max-height: 90%;
+    /* height: 70%; */
+    border-radius: 7px;
+}
+.onedit-container::-webkit-scrollbar {
+    display: none;
+  }
+.onedit-close {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 1rem;
+}
+.onedit-texteditor {
+    margin-top: 2%;
+    vertical-align: center;
+}
+.onedit-button {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+.onedit-button button {
+    background-color: #FF133F;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 0.5rem;
+    transition: ease-in 0.2s;
+
+    color: #fff;
+}
+.onedit-button button:hover {
+    background-color: rgb(180, 0, 27);
+
+}
+.postbyuser-edited-container {
+    background-color: #F9F9F9;
+    border: 1px solid #F3F3F3;
+    padding: 0.6rem;
+    color: #c7c7c7;
+    font-size: 10px;
+    margin-top: 1rem;
+}
+/* .ql-container.ql-snow {
+    background-color: #3C3E43;
+    color: #fff;
+
+} */
+
+.post-reply-second-input {
+    background-color: #fff;
+    margin-top: 1.5rem;
+    overflow: hidden;
+}
+/* .ql-toolbar.ql-snow svg {
+   color: #fff;
+} */
+.pagination-container-searchperpost {
+    display: flex;
+    justify-content: flex-end;
 }

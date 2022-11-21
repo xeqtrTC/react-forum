@@ -12,7 +12,7 @@
     border: 1px solid #e6e6e6;
     background-color: #f0f0f0;
     border-radius: 5px;
-    height: 10rem;
+    height: 12.3rem;
 }
 .forum-editprofile-rightside {
     flex: 1;
@@ -77,6 +77,21 @@
     outline: none;
     padding: 0.5rem 1.5rem;
 }
+.notvalid input {
+    border: 1px solid rgb(0, 255, 0);
+    outline: none;
+    padding: 0.5rem 1.5rem;
+} 
+.validinput {
+    margin-left: 2rem;
+}
+.validinput input {
+    border: 1px solid green;
+    outline: none;
+
+    padding: 0.5rem 1.5rem;
+}
+
 .editimage-container-image {
     display: flex;
 }
@@ -147,11 +162,12 @@
     display: flex;
 }
 .overview-total-posts p {
+
     font-size: 13px;
     color: #46494f;
-
     padding: 0;
     margin: 0;
+
 }
 .total-post-name {
     width: 40%;
@@ -174,4 +190,27 @@
 .forum-post-name-answer a {
     color: black;
     text-decoration: none;
+}
+.browser-history-first {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+.browser-history-second-container {
+    display: flex;
+    justify-content: space-between;
+}
+.browser-container table tr th{
+    text-align: left;
+    padding: 0 5rem 1rem 0 ;
+}
+.browser-container table tr td {
+    padding: 0.3rem 0;
+}
+.browser-container table {
+    width: 100%;
+}
+.browser-table {
+    background-color: #fff;
+
 }

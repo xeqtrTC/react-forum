@@ -1,0 +1,46 @@
+.admin-userslist-container {
+    padding: 1rem;
+    background-color: #F9FAFC;
+    height: 100%;
+
+}
+.datagrid-image {
+    padding: 5rem 0;
+    width: 100%;
+    object-fit: cover;
+    height: 5rem;
+    border-radius: 5px;
+}
+.admin-userlist-grid {
+    height: 50rem;
+    background-color: #fff;
+}
+
+.admin-userlist-grid svg {
+    color: black;
+    /* width: 4rem;
+    height: 2rem; */
+}
+.admin-userinfo-error {
+    padding: 1rem;
+    text-align: center;
+}
+
+.admin-userinfo-error button{
+    padding: 0.5rem;
+    background-color: #FF133F;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+}
+.admin-userinfo-error button:hover {
+    background-color: rgb(180, 0, 27);
+
+}
+.admin-userinfo-error a {
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+}

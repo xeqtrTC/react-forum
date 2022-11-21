@@ -1,23 +1,22 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { useState } from 'react';
 import Footer from '../../Footer/Footer';
 import Header from '../../header/Header';
-import { EditorState, convertToRaw} from 'draft-js';
 import { useNavigate } from 'react-router-dom';
 import { usePostCategoryByUserMutation } from '../../../redux/categoryApi';
 import { useParams } from 'react-router-dom';
-import { Editor } from "react-draft-wysiwyg";
-import draftToHtml from 'draftjs-to-html';
-import DOMPurify from 'dompurify';
+
+
+
 
 
 import { selectCurrentUser } from '../../../redux/authSlice';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
-
 import './PostingCategory.css';
-import EditorConvertToJSON from './TextEditor';
 import { useSelector } from 'react-redux';
+import PhotoAfterHeader from '../PhotoAfterHeader/PhotoAfterHeader';
+import ReactQuillEditor from '../../ReactQuillEditor';
 export default function PostingCategory() {
     const navigate = useNavigate();
     const [color, setColor] = useState(true)
@@ -25,39 +24,51 @@ export default function PostingCategory() {
     console.log(username);
     const {category} = useParams()
     const [error, setError] = useState(null);
-    const [title, setTitle] = useState('');
+    const [test, setTest] = useState('');
+    // const [title, setTitle] = useState('');
     const [text, setText] = useState('');
+    const [valueForQuill, setValueForQuill] = useState('');
+    console.log(valueForQuill);
     const [postCategoryByUser] = usePostCategoryByUserMutation();
-    const [userInfo, setuserInfo] = useState({
-      title: '',
-    });
+    const [titleValue, setTitleValue] = useState('');
+    console.log(test);
+
     const onChangeValue = (e) => {
-      setuserInfo({
-        ...userInfo,
-        [e.target.name]:e.target.value
-      });
-    } 
-    let editorState = EditorState.createEmpty();
-  const [description, setDescription] = useState(editorState);
-  const onEditorStateChange = (editorState) => {
-    setDescription(editorState);
-  }
-  const descriptionValue = userInfo.description?.value;
-  const titleValue = userInfo.title
-  console.log(descriptionValue);
-  console.log(titleValue);
+      setTitleValue(e.target.value)
+    }
+    // const onChangeValue = (e) => {
+    //   setuserInfo({
+    //     ...userInfo,
+    //     [e.target.name]:e.target.value
+    //   });
+    // } 
+    // let editorState = EditorState.createEmpty();
+  // const [description, setDescription] = useState(editorState);
+  // const onEditorStateChange = (editorState) => {
+  //   setDescription(editorState);
+  // }
+  // const descriptionValue = userInfo.description?.value;
+  // const titleValue = userInfo.title
+  // console.log(descriptionValue);
+  // console.log(titleValue);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const descriptionValue = valueForQuill;
+
     if(descriptionValue && titleValue) {
       try {
         console.log('ulazim')
         const post = await postCategoryByUser({username, descriptionValue, titleValue, category}).unwrap();
         console.log(post);  
-        setuserInfo('');
+        setTitleValue('');
+        // setuserInfo('');
         navigate(`/forum/${category}`)
       } catch (error) {
         console.log(error);
+        const { data } = error;
+        setError(data?.message);
       }
     } else {
       setError('Fill all the fields')
@@ -68,14 +79,23 @@ export default function PostingCategory() {
 
   }
 
+  
+
+  const embedVideoCallBack = (link) =>{
+    if (link.indexOf("youtube") >= 0){
+        link = link.replace("watch?v=","embed/");
+        link = link.replace("/watch/", "/embed/");
+        link = link.replace("youtu.be/","youtube.com/embed/");
+    }
+    return link
+}
+
 
     return (
 
     <>
         <Header children={color} />
-        <div className='forum-screen-banner'>
-            <img src={'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/095b362d-6c4d-4adf-9498-3d8d07222a75/dd1zpsf-dcf62d69-2293-4414-9bec-06501030a63f.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzA5NWIzNjJkLTZjNGQtNGFkZi05NDk4LTNkOGQwNzIyMmE3NVwvZGQxenBzZi1kY2Y2MmQ2OS0yMjkzLTQ0MTQtOWJlYy0wNjUwMTAzMGE2M2YuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.N6w-J219M04z0iMWGMLEvgRWvxqeJlFwqtaOhhbfKQg'} alt='photo' />
-        </div>
+        <PhotoAfterHeader />
         <div className='forum-page-first'>
             <div className='forum-page-full'>
                 <p>{category}</p>
@@ -94,21 +114,43 @@ export default function PostingCategory() {
                 </div>
                 <div className='posting-subject'>
                     <span>Subject:</span>
-                    <input type="text" name="title" value={userInfo.title} onChange={onChangeValue}   placeholder="Title"  />
+                    <input type="text" name="title" value={titleValue} onChange={onChangeValue}   placeholder="Title"  />
                 </div>
                 <div className='posting-textarea'>
                 <div>
-                <Editor
+                  <ReactQuillEditor setValueForQuill={setValueForQuill} valueForQuill={valueForQuill} />
+                {/* <Editor
                   editorState={description}
                   toolbarClassName="toolbarClassName"
                   wrapperClassName="wrapperClassName"
-                  editorClassName="editorClassName"
+                  editorClassName="classNameEditor"
                   onEditorStateChange={onEditorStateChange}
-                />
-          <textarea style={{display:'none'}} disabled ref={(val) => userInfo.description = val} value={draftToHtml(convertToRaw(description.getCurrentContent())) } />
+                  toolbar={{
+                    embedded:{
+                        embedCallback: embedVideoCallBack
+                    }
+                }}
+                  mention={{
+                    separator: ' ',
+                    trigger: '@',
+                    suggestions: [
+                      { text: 'APPLE', value: 'apple', url: 'apple' },
+                      { text: 'BANANA', value: 'banana', url: 'banana' },
+                      { text: 'CHERRY', value: 'cherry', url: 'cherry' },
+                      { text: 'DURIAN', value: 'durian', url: 'durian' },
+                      { text: 'EGGFRUIT', value: 'eggfruit', url: 'eggfruit' },
+                      { text: 'FIG', value: 'fig', url: 'fig' },
+                      { text: 'GRAPEFRUIT', value: 'grapefruit', url: 'grapefruit' },
+                      { text: 'HONEYDEW', value: 'honeydew', url: 'honeydew' },
+                    ],
+                    
+                  }}
+                /> */}
+          {/* <textarea style={{display:'none'}} disabled ref={(val) => userInfo.description = val} value={draftToHtml(convertToRaw(description.getCurrentContent())) } /> */}
                 </div>
                 </div>
             </div>
+            {/* <ReactQuill modules={modules} onChange={setTestaaa} theme='snow' /> */}
             <div className='posting-category-button'>
                 <button>Post a new topic</button>
             </div>

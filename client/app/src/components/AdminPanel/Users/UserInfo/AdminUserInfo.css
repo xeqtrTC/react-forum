@@ -1,0 +1,241 @@
+.admin-userinfo-wrapper { 
+    height: 100%;
+    padding: 1rem;
+    background-color: #F4F5F7;
+}
+.admin-userinfo-container  {
+    padding: 2rem 1rem;
+}
+.admin-userinfo-userprofile {
+    color: #3D5270;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.admin-userinfo-output {
+    display: flex;
+    margin-top: 1rem;
+
+}
+.admin-userinfo-first {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 10px;
+    
+}
+.admin-userinfo-second {
+    flex: 2;
+    height: 30rem;
+    margin-left: 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.admin-userinf-first-image img {
+    border-radius: 50%;
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+}
+.admin-userinf-first-image {
+    display: flex;
+    padding: 0.5rem 0;
+    justify-content: center;
+}
+.admin-userinfo-first-container {
+    padding: 0.5rem 0;
+}
+.admin-userinfo-username {
+    display: flex;
+    justify-content: center;
+}
+.admin-userinfo-username span {
+    color: #3D5270;
+    font-size: 25px;
+}
+.admin-userinfo-role {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+.admin-userinfo-role p {
+     /* color: #968E96; */
+    font-size: 15px;
+    margin: 0;
+    padding: 0.2rem 0; 
+
+}
+.admin-userinfo-location {
+    padding: 1rem 1.5rem;
+}
+.admin-userinfo-location-color {
+    color: #968E96;
+
+}
+.admin-userinfo-location-name {
+    color: #3D5270;
+    margin-left: 1rem;
+}
+.first-inrow {
+    border-top: 1px solid #E1E5EB;
+
+}
+.last-inrow {
+    border-bottom: 1px solid #E1E5EB;
+}
+.admin-userinfo-second-userdetails {
+    padding: 1rem 1.5rem;
+    color: #3D5270;
+    border-bottom: 1px solid #E1E5EB;
+
+}
+.admin-userinfo-second-input-first {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.admin-userinfo-second-input-first label {
+    display: inline-block;
+    color: #5a6169;
+    font-size: 15px;
+    font-weight: 100;
+}
+.admin-userinfo-second-input-first input{
+    margin-top: 0.5rem;
+    padding: 0.7rem 0.8rem;
+    border-radius: 5px;
+    border: 1px solid #e1e5eb;
+    outline: none;
+}
+.admin-userinfo-second-inputs-container {
+    display: flex;
+    padding: 0.5rem;
+}
+.admin-userinfo-second-input-first ::placeholder {
+    color: #495057;
+}
+.admin-userinfo-button {
+    padding: 1rem 1.5rem;
+    display: flex;
+}
+.admin-userinfo-updatesuccess {
+    margin-left: 0.5rem;
+}
+.admin-userinfo-banned-container button, .role-selected-role button, .admin-userinfo-button button, .admin-userinfo-userprofile button, .button-container-adminuser button {
+    padding: 0.5rem;
+    background-color: #FF133F;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+.admin-userinfo-banned-container button:hover, .role-selected-role button:hover, .admin-userinfo-button button:hover, .admin-userinfo-userprofile button:hover, .button-container-adminuser button:hover {
+    background-color: rgb(180, 0, 27);
+
+}
+
+.browser-history-adminuserinfo-container {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 5px;
+}
+.button-container-adminuser{
+    margin-top: 1rem;
+}
+.admin-userisnotverificatedbyadmin {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    background-color: #FF133F;
+    color: #fff;
+}
+.admin-failedrole {
+    background-color: #FF133F;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    border-radius: 5px;
+    background-color: #FF133F;
+    color: #fff;
+}
+.admin-userisnotverificatedbyadmin button {
+    background-color: rgb(165, 26, 26);
+    border: none;
+    outline: none;
+    padding: 0.5rem;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+.admin-verifysuccess {
+    background-color: rgb(41, 194, 41);
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    color: #fff;
+
+}
+.loader-updatesuccess {
+    border: 5px solid #f3f3f3; 
+    border-top: 5px solid #3498db; /* Blue */
+    border-radius: 50%;
+ 
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+.browser-container select {
+    padding: 0.5rem;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 8px;
+    
+}
+.role-selected-role {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 0 0 0;
+}
+.role-selected-role-firstcontainer {
+    display: flex;
+}
+.role-selected-role-firstcontainer p {
+    margin:  0;
+}
+.admin-userinfo-banned-container {
+    background-color: #fff;
+    border-radius: 7px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.admin-userinfo-banned-container input {
+    border-radius: 7px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    outline: none;
+    
+    border: 1px solid rgb(209, 209, 209);
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.admin-userinfo-banned-container button {
+    margin-top: 1rem;
+}

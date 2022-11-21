@@ -20,20 +20,43 @@ const test = (state, action) => {
 
 const authSlice = createSlice({
     name: 'auth',
-    initialState: { username: null, token: null },
+    initialState: {  username: null, roles: null, imageResult: null  },
     reducers: {
         setCredentials: (state, action) => {
-            console.log(action.payload)
-            const { username, accessToken } = action.payload; // takes user and accessToken from state
-            console.log(username);
-                state.username = username; // destruction of state
-            state.token = accessToken; // " " "
+            console.log('actiooooooooon', action.payload)
+            const { username, roles, imageResult } = action.payload;
+            // console.log('userrrrrrrrrr', username);
+            // const roleList = [
+            //     {
+            //         Administrator,
+            //         CommunityManager,
+            //         Director,
+            //         HeadAdmin,
+            //         Admin,
+            //         VodjaHelpera,
+            //         Helper, 
+            //         VodjaPromotera,
+            //         Promoter, 
+            // org1lider, 
+            // org2lider,
+            // org3lider,
+            // org4lider,
+            // org5lider,
+            // org6lider,
+            // org7lider
+            // }
+            // ]
+            // console.log('roles', roles)
+            state.username = username; // destruction of state
+            state.roles = roles
+            state.imageResult = imageResult;
+            
+            // state.token = accessToken; // " " "
             
 
         },
         logOut: (state, action) => {
             state.user = null; // sets state of user to null
-            state.token = null; // " " " " " "
         }
     }
 })
@@ -44,3 +67,5 @@ export default authSlice.reducer;
 
 export const selectCurrentUser = ( state ) => state.auth.username; // selects current user from state, auth.user is namedi in setCredentials
 export const selectCurrentToken = ( state ) => state.auth.token; // "  " auth.token " "
+export const selectRolesOfCurrentUser = ( state ) => state.auth.roles; // "  " auth.token " "
+export const selectImageOfCurrentUser = ( state ) => state.auth.imageResult; // "  " auth.token " "

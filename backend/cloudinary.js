@@ -1,10 +1,12 @@
-import cloudinary from 'cloudinary';
+const cloudinary = require('cloudinary');
 
 cloudinary.config({
-    cloud_name: "htbceqmbf",
-    api_key: "134298133349267",
-    api_secret: "Se7UUP0oYn9muCQWqxlTde6msg0",
+    cloud_name: "dyc002s1b",
+    api_key: "337526532682655",
+    api_secret: "_FFvZXMkTevCzKcmjgaAYpjRzkQ",
 });
 
 
-export default cloudinary
+module.exports =  {
+    cloudinary
+}

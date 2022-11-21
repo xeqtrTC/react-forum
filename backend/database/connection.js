@@ -1,15 +1,17 @@
 const mysql2 = require('mysql2');
 
 
-const connection = mysql2.createConnection({
+const pool = mysql2.createPool({
     host: 'localhost',
     user: 'root',
     database: 'forum',
     password: '',
-    multipleStatements: true,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 })
 
-connection.connect((error) => {
+pool.getConnection((error) => {
     if(error) {
         console.log(error)
     } else {
@@ -17,4 +19,4 @@ connection.connect((error) => {
     }
 })
 
-module.exports = connection
+module.exports = pool

@@ -1,0 +1,32 @@
+.screenafterregister-container img {
+    width: 5rem;
+    height: 5rem;
+}
+.screenafterregister-container {
+    display: flex;
+    width: 40%;
+    margin: 5rem auto;
+
+    justify-content: center;
+}
+.screenafterregister-image {
+    display: flex;
+    justify-content: center;
+}
+.screenafterregister-under {
+    display: flex;
+    flex-direction: column;
+}
+.screenafterregister-text p {
+    padding: 0;
+}
+.screenafterregister-verifyemail {
+    font-size: 30px;
+    margin: 0;
+}
+.screenafterregister-text {
+    text-align: center;
+}
+.screenafterregister-verify-text {
+    margin-top: 1rem;
+}

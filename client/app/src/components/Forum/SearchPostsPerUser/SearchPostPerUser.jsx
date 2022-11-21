@@ -2,21 +2,31 @@ import React, { useState, useEffect } from 'react'
 import Footer from '../../Footer/Footer';
 import Header from '../../header/Header';
 import { useGetPostsPerUserQuery } from '../../../redux/categoryApi';
-import { format, formatDistance, formatRelative, subDays, parseISO, compareAsc   } from 'date-fns'
-import './SearchPostPerUser.css';
+import { format,   parseISO,    } from 'date-fns'
 import LoadingBox from '../../LoadingBox/LoadingBox';
-import { useSelector } from 'react-redux';
-import { selectCurrentUser } from '../../../redux/authSlice';
 import Pagination from '../Pagination/Pagination';
+import { useParams, Link } from 'react-router-dom';
+import PhotoAfterHeader from '../PhotoAfterHeader/PhotoAfterHeader';
+import parse from 'html-react-parser';
+import { useMemo } from 'react';
+
+
+import './SearchPostPerUser.css';
+
 export default function SearchPostPerUser() {
-    const username = useSelector(selectCurrentUser);
+    const { username } = useParams();
+    console.log(username);
     
     const [color, setColor] = useState(true)
-    const {data, isError, isLoading} = useGetPostsPerUserQuery(username)
+    const { data, isError, isSuccess, error, isLoading} = useGetPostsPerUserQuery()
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(15);
     const [keyword, setKeyword] = useState('');
     const [items, setItems] = useState()
+
+    const memoizdedData = useMemo(() => data, [data])
+
+
     useEffect(() => {
         setItems(data);
     }, [items, data])
@@ -32,27 +42,157 @@ export default function SearchPostPerUser() {
         filterItems();
     }, [keyword])
 
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexofFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = items?.slice(indexofFirstPost, indexOfLastPost);
-    console.log(currentPosts);
+    console.log(items);
 
-    const Paginate = (pageNumber) => setCurrentPage(pageNumber);
+    // const indexOfLastPost = currentPage * postsPerPage;
+    // const indexofFirstPost = indexOfLastPost - postsPerPage;
+    // const currentPosts = items?.slice(indexofFirstPost, indexOfLastPost);
+    // console.log(currentPosts);
 
-    return ( 
-    <>
+    // const Paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const [pageNumber, setPageNumber] = useState(0);
+    const usersPerPage = 15;
+    const pagesVisited = pageNumber * usersPerPage;
+    // const pageCount = Math.ceil(data?.length / usersPerPage);
+    const changePage = ({ selected }) => {
+        setPageNumber(selected);
+      };
+
+
+      const displayFilteredItems = memoizdedData?.filter((item) => {
+                    if(keyword === "") {
+                        return item
+                    } else if (
+                        item.reply_post.toLowerCase().includes(keyword.toLowerCase())
+                    ) {
+                        return item
+                    }
+                    return false;
+                }).slice(pagesVisited, pagesVisited + usersPerPage).map((items) => {
+                    const { reply_username, reply_date, reply_content, replyid, reply_post, reply_category} = items;
+                    return (
+                        <div className='searchpost-post' key={replyid}>
+
+                <div className='search-post-leftside'>
+                    <div className='search-post-leftside-info'>
+                        <div className='search-post-leftside-info-things'>
+                            <span className='user-post-leftside-input'>by</span>  <Link to={`/forum/userprofile/${reply_username}`}><span className='search-post-user-color'>{reply_username}</span></Link>
+
+                        </div>
+                        <div className='search-post-leftside-info-things-acaaaaaaab'>
+                            <span className='date-searchuser-posts'>{format(parseISO(reply_date), "MMMM Qo, yyyy, H:m a")}</span>
+                        </div>
+                        <div className='search-post-leftside-info-things'>
+                            <div className='search-post-leftside-info-things-first-div'>
+                                <span>Forum:</span>
+                            </div>
+                            <div className='search-post-leftside-info-things-second-div'>
+                                <Link to={`/forum/${reply_category}`}><span className='color-name-forum'>{reply_category}</span></Link>
+
+                            </div>
+                        </div>
+                        <div className='search-post-leftside-info-things'>
+                            <div className='search-post-leftside-info-things-first-div'>
+                                <span>Topic:</span>
+                            </div>
+                            <div className='search-post-leftside-info-things-second-div'>
+                                <Link to={`/forum/${reply_category}/${reply_post}`}><span className='color-name-forum'>{reply_post}</span></Link>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div className='search-post-rightside'>
+                    <div className='search-post-rightside-container'>
+                        <span>Re: {reply_post}</span>
+                        <div className='search-post-rightside-info'>
+                            <div className="post__description">{parse(reply_content )} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+      })
+      console.log(displayFilteredItems);
+
+      const pageCount = Math.ceil(
+        memoizdedData?.filter((bulletin) => {
+          if (keyword === "") {
+            return bulletin;
+          } else if (
+            bulletin.reply_post.toLowerCase().includes(keyword.toLowerCase())
+          ) {
+            return bulletin;
+          }
+          return false;
+        }).length / usersPerPage
+      );
+    
+    
+
+
+
+    let content;
+
+
+    if(isLoading) content = <LoadingBox />
+
+    if(error) {
+        
+        content = (
+            <>
+                <Header children={color} /><div className='forum-page-container'>
+                    <PhotoAfterHeader />
+                    <div className='forum-page-first'>
+                        
+                    </div>
+
+
+                    <div className='forum-page-second-container'>
+                        
+                        
+
+                        
+
+
+
+
+                        <div className='forum-page-posts'>
+                            {/* <div className='forum-page-topic'>
+                                <p>Topic</p>
+                                <p>Last post</p>
+                            </div>
+                            {data?.length === 0 && <p>There isn't any posts yet.</p>}
+                            <div className='forum-page-real-post'>
+
+                                {forumPagePostsIds}
+
+                            </div> */}
+                            <div className='category-error-messsage'>
+
+                                    <p>{error?.data?.message}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <Footer />
+                </>
+        )
+    }
+
+
+    if(isSuccess) {
+
+        const displayPosts = items?.slice(pagesVisited, pagesVisited + usersPerPage)
+
+        content = (
+            <>
     <Header children={color} />
-    <div className='forum-screen-banner'>
-        <img src={'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/095b362d-6c4d-4adf-9498-3d8d07222a75/dd1zpsf-dcf62d69-2293-4414-9bec-06501030a63f.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzA5NWIzNjJkLTZjNGQtNGFkZi05NDk4LTNkOGQwNzIyMmE3NVwvZGQxenBzZi1kY2Y2MmQ2OS0yMjkzLTQ0MTQtOWJlYy0wNjUwMTAzMGE2M2YuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.N6w-J219M04z0iMWGMLEvgRWvxqeJlFwqtaOhhbfKQg'} alt='photo' />
-    </div>
+        <PhotoAfterHeader />
         {
-            isLoading ?  (
-                <LoadingBox />
-            ) : (
-                isError ? (
-                    <p>{isError}</p>
-                ) : (
-                    items?.length === 0 ? (
+
+                displayFilteredItems?.length === 0 ? (
                         <>
                         <div className='grey-zone'>
                             <div className='grey-zone-90width'>
@@ -63,13 +203,18 @@ export default function SearchPostPerUser() {
                             </div>
 
                         </div>
-                        <p>There isn't any post, try again</p>
+                        <div className='searchuserposts-error-messsage'>
+                            <div className='searchpost-post'>
+                                <p>There isn't any post, try again</p>
+
+                            </div>
+                        </div>
                         </>
                     ) : (
                         <>
                     <div className='grey-zone'>
                     <div className='grey-zone-90width'>
-                        <span>Search found {data.length} matches</span>    
+                        <span>Search found {keyword ? displayFilteredItems.length : memoizdedData.length} matches</span>    
                         <div className='grey-zone-search'>
                             <input type='text' placeholder='Search posts per user' onChange={(e) => setKeyword(e.target.value)} />
                         </div>
@@ -77,45 +222,10 @@ export default function SearchPostPerUser() {
 
                 </div>
                 <div className='searchpost-container'>
-                <div className='pagination-container-searchperpost'>
-                    <Pagination postsPerPage={postsPerPage} totalPosts={items?.length} paginate={Paginate} />
+                    <Pagination pageCount={pageCount} changePage={changePage} />
 
-                </div>
 
-                        {
-                            currentPosts?.map((postinfo) => {
-                                const { reply_username, reply_date, reply_content, replyid, reply_post} = postinfo;
-                                return (
-                                    <div className='searchpost-post' key={replyid}>
-
-                            <div className='search-post-leftside'>
-                                <div className='search-post-leftside-info'>
-                                    <div className='search-post-leftside-info-things'>
-                                        <span>by</span> <span className='search-post-user-color'>{reply_username}</span>
-                                    </div>
-                                    <div className='search-post-leftside-info-things'>
-                                        <span></span>
-                                    </div>
-                                    <div className='search-post-leftside-info-things-forum'>
-                                        <span>Forum:</span> <span className='color-name-forum'>great</span>
-                                    </div>
-                                    <div className='search-post-leftside-info-things'>
-                                        <span>Topic:</span> <span className='color-name-forum'>great</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='search-post-rightside'>
-                                <div className='search-post-rightside-container'>
-                                    <span>Re: {reply_post}</span>
-                                    <div className='search-post-rightside-info'>
-                                        <div className="post__description" dangerouslySetInnerHTML={{ __html: reply_content }} />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                                )
-                            })
-                        }
+                       {displayFilteredItems}
 
                         
 
@@ -124,8 +234,6 @@ export default function SearchPostPerUser() {
                     </>
                     )
     
-                )
-            )
         }
 
        
@@ -133,5 +241,17 @@ export default function SearchPostPerUser() {
     
     <Footer />
     </>
-  )
+        )
+
+    }
+
+
+
+
+
+
+
+
+
+    return content;
 }

@@ -1,5 +1,5 @@
 .searchpost-container {
-    width: 90%;
+    width: 80%;
     margin: 1rem auto;
 }
 .grey-zone {
@@ -7,10 +7,11 @@
     padding: 2rem 0; 
 }
 .grey-zone-90width {
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .grey-zone-90width span {
     font-size: 13px;
@@ -23,11 +24,34 @@
     border-radius: 5px;
 }
 .search-post-leftside {
-    padding: 0.5rem 5rem;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 1rem ;
+    /* padding: 0.5rem 5rem; */
     border-right: 1px solid #EBEBEB;;
 }
+.search-post-rightside {
+    flex: 6;
+}
+
 .search-post-leftside-info-things {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0;
+}
+.search-post-leftside-info-things-second-div {
+    word-break: break-all
+
+}
+.search-post-leftside-info-things a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+.search-post-leftside-info-things span {
+    display: flex;
+    align-items: center;
 }
 .search-post-leftside-info-things span, .search-post-leftside-info-things-forum span {
     font-size: 13px;
@@ -40,11 +64,19 @@
     font-size: 14px;
 }
 .search-post-leftside-info-things-forum {
-    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+    margin: 0.5rem 0 0.5rem 0;
+}
+.search-post-leftside-info-things-forum a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 .color-name-forum {
     color: #46494f;
     cursor: pointer;
+    margin-left: 0.2rem;
 }
 .grey-zone-search input {
     padding: 0.4rem 1rem;
@@ -56,4 +88,23 @@
 .pagination-container-searchperpost {
     display: flex;
     justify-content: flex-end;
+}
+.search-post-rightside-info {
+    word-break: break-all;
+    white-space: pre-wrap;
+}
+
+.date-searchuser-posts {
+    font-size: 12px;
+}
+.search-post-leftside-info-things-acaaaaaaab {
+    display: flex;
+    justify-content: center;
+}
+.user-post-leftside-input {
+    margin-right: 0.3rem;
+}
+.searchuserposts-error-messsage {
+    width: 80%;
+    margin: 0 auto;
 }

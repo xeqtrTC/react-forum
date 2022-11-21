@@ -1,0 +1,73 @@
+.addhelper-container {
+    padding: 1rem;
+    background-color: #F9FAFC;
+    height: 100%;
+    display: flex;
+    overflow-y: hidden;
+    flex-direction: column;
+}
+.addhelper-input {
+    display: flex;
+    justify-content: center;
+}
+.addhelper-input input {
+    padding:  0.8rem;
+    border-radius: 4px;
+    width: 20rem;
+    outline: none;
+    border: 1px solid rgb(126, 126, 126);
+}
+.addhelper-userlist {
+    padding: 1rem;
+    margin-top: 1rem;
+    display: flex;
+    border-radius: 7px;
+    flex-direction: column;
+    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+.addhelper-state {
+    margin-top: 1rem;
+    border-radius: 7px;
+    background-color: rgb(0, 199, 199);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.addhelper-userlist span {
+    color: rgb(34, 34, 34);
+    padding: 0.2rem 0;
+}
+.addhelper-current span {
+    color: #fff;
+}
+.addhelper-button button {
+    background-color:rgb(9, 128, 128);
+    padding: 0.5rem;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    outline: none;
+}
+.addhelper-button button:hover {
+    background-color: rgb(7, 70, 70);
+}
+.addhelper-second-container {
+    padding: 3rem 0;
+}
+.addhelper-error {
+    background-color: #FF133F;
+    border-radius: 5px;
+    padding: 0.8rem;
+    color: #fff;
+    margin-top: 1rem;
+
+}
+.addhelper-success {
+    background-color: rgb(41, 194, 41);
+    padding: 0.8rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    color: #fff;
+}

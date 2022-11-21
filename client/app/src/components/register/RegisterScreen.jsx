@@ -38,7 +38,7 @@ export default function RegisterScreen() {
   
     const [error, setError] = useState('');
     const [register] = useRegisterMutation();
-
+    const [pass, setpass] = useState('');
     
 
     const isEveryInputFilled = [username, email, password, confirmPassword].every(Boolean)
@@ -60,13 +60,15 @@ export default function RegisterScreen() {
             setEmail('');
             setPassword('');
             setConfirmPassword('');
-            navigate('/forum')
+            // navigate('/nice', {state: {email}})
         } catch (error) {
             const { data } = error;
             if(data.message === 'Username already in use.') {
                 setError('Username already in use')
             } else if ( data.message === 'Email already in use.') { 
                 setError('Email already in use')
+            } else if ( data.message === 'Please check your email and verificate your account') {
+                setpass('Please check your email and verificate your account')
             }
         }
     }
@@ -97,12 +99,7 @@ export default function RegisterScreen() {
 
 
     return (
-      <AnimatePresence>
-    <motion.div className='register-container'
-    initial={{ opacity: 0}}
-    animate={{ opacity: 1}}
-    exit={{ opacity: 0}}
-    >
+        <>
         <div className='register-first'>
             <div className='register-inputs'>
                 <form onSubmit={handleSubmit}  >
@@ -111,6 +108,11 @@ export default function RegisterScreen() {
                 {
                     error && <div  className='error-container' >
                         <p>{error}</p>
+                    </div>
+                }
+                {
+                    pass && <div className='pass-container'>
+                        <p>{pass}</p>
                     </div>
                 }
                
@@ -203,7 +205,6 @@ export default function RegisterScreen() {
                 Copyright &copy; 2022 xeqtrTC
             </div>
         </div>
-    </motion.div>
-    </AnimatePresence>
+        </>
   )
 }

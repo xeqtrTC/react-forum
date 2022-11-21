@@ -3,7 +3,7 @@
     padding: 0;
 }
 .posting-container {
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
 }
 .posting-belowcontainer {
@@ -21,7 +21,14 @@
     font-size: 13px;
 }
 
-
+.forum-page-full {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+.forum-page-first {
+    background-color: #F0F0F0;
+}
 .posting-subject {
     display: flex;
     margin-top: 1rem;
@@ -42,7 +49,6 @@
 }
 .posting-textarea {
     margin-top: 1rem;
-    width: 70%;
   
 }
 .posting-textarea textarea {
@@ -75,4 +81,7 @@
 }
 .posting-category-button button:hover {
     background-color: rgb(180, 0, 27);
+}
+.classNameEditor {
+    min-height: 25rem
 }

@@ -1,0 +1,234 @@
+.forum-private-messages-container {
+    width: 70%;
+    margin:  0 auto;
+    margin-top: 1rem;
+}
+.forum-private-messages-color-container {
+    display: flex;
+}
+.forum-private-messages-left-side {
+    background-color: #6474FF;
+    border: 1px solid #6474FF;
+    flex: 1;
+    max-height: 50rem;
+    overflow: hidden;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+
+}
+.forum-private-messages-left-side::-webkit-scrollbar, .forum-private-messages-right-side-container::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+
+}
+.forum-private-messages-right-side{
+    flex: 2;
+    background-color: #F7F7F7;
+    padding: 2rem;
+}
+.forum-private-messages-left-side-icons {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 1rem;
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.forum-private-messages-leftside-chat-component {
+    margin-top: 1rem;
+}
+
+.forum-private-messages-left-side-icons svg {
+    color: #fff;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+.forum-private-messages-left-side-icons-right svg {
+    cursor: pointer;
+}
+.rotatedsvg {
+    transform: rotate(80deg);
+}
+.forum-private-messages-leftside-chat-component-user {
+    padding: 1.5rem 0;
+
+
+}
+.forum-private-messages-leftside-chat-component-user-width {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+}
+.date-of-user-private span {
+    font-size: 9px;
+}
+.img-radius-private-messages {
+    display: flex;
+    align-items: center;
+}
+.img-radius-private-messages img {
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.name-of-user-private-messages {
+    margin-left: 1rem;
+    width: 100%;
+}
+.name-of-user-and-date-private-messages {
+    display: flex;
+    justify-content: space-between;
+}
+.name-of-user-private-messages-search-user {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    margin-left: 1rem;
+}
+.name-of-user-private-messages span {
+    color: #fff;
+}
+.name-of-user-private span {
+    font-size: 15px;
+}
+.date-of-user-private span {
+    font-size: 13px;
+}
+.message-of-user-private {
+    font-size: 14px;
+}
+.active-private {
+    background-color: #7080FE;
+    border-left: 5px solid #fff;
+}
+.forum-private-messages-leftside-chat-component-user:hover {
+    background-color: #7080FE;
+    cursor: pointer;
+}
+.forum-private-messages-right-side-container {
+    overflow: hidden;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    max-height: 40rem;
+    scrollbar-width: none;
+
+}
+.sender {
+    display: flex;
+    min-height: 6rem;
+    justify-content: flex-start;
+    white-space: pre-line;
+}
+.right-side-private-whorecieved {
+    display: flex;
+    min-height: 6rem;
+    justify-content: flex-end;
+    white-space: pre-line;
+    margin-top: 1rem;
+}
+.right-side-private-whorecieved-box {
+    display: flex;
+    align-items: center;
+    min-height: 6rem;
+}
+.right-side-private-whorecieved-image img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.right-side-whorecieved-text-box {
+    margin-right: 1rem;
+    margin-left: 1rem;
+    overflow-wrap: break-word;
+
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    /* width: 5rem; */
+    max-width: 19rem;
+}
+.private-message-input {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+.private-message-input input {
+    padding: 1rem;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 70%;
+    border: none;
+    outline: none;
+
+}
+.private-message-input  button {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 15%;
+    background-color: #6474FF;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+
+    outline: none;
+}
+.search-user-input { 
+    box-sizing: border-box;
+
+}
+.search-user-input input {
+      box-sizing: border-box;
+    outline: none;
+    border: none;
+    background-color: #5462e6;
+    color: #fff;
+    padding: 1rem;
+    width: 100%;
+
+}
+.search-user-input input::placeholder {
+    color: #fff;
+}
+.name-of-user-private-messages-search-user span {
+    padding:1rem 0
+}
+.search-user-private-error {
+    padding: 1rem 2.5rem;
+    color: #fff;
+}
+
+.privatemessages-error-container {
+    display: flex;
+    justify-content: center;
+    animation: drop 0.5s ease forwards;
+
+}
+.private-message {
+    position: absolute;
+    background-color: #b4b4b4;
+    border-radius: 10px;
+    padding: 0.2rem 6rem;
+    text-align: center;
+}
+
+@keyframes drop {
+    0% {opacity: 0}
+    50% { opacity: 0.5;}
+    100% {opacity: 1;}
+}
+.loader-private {
+    border: 7px solid #f3f3f3; /* Light grey */
+    border-top: 7px solid #6474FF; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

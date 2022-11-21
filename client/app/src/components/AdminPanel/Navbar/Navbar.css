@@ -1,0 +1,28 @@
+.navbar-container {
+    padding: 1rem;
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+.navbar-image img {
+    object-fit: cover;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}
+.navbar-image {
+    margin-right: 0.5rem;
+}
+.navbar-last {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-username  {
+    height: 100%;
+}
+.navbar-username p {
+    margin: 0;
+    
+    padding: 0;
+}

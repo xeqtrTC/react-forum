@@ -1,0 +1,203 @@
+.admin-wrapper {
+    display: flex;
+}
+.admin-navbar-wrapper  {
+    width: 100%;
+}
+.dashboard-container {
+    padding: 1rem;
+    background-color: #F9FAFC;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+.dashboard-first-box {
+    padding: 2rem;
+    width: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10rem;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+}
+.dashboard-first-container {
+    display: flex;
+
+}
+.dashboard-first-box-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dashboard-first-box svg {
+    color: rgb(224, 71, 71);
+    width: 5rem;
+    height: 5rem;
+}
+.dashboard-first-box p {
+    text-align: center;
+    margin: 0;
+}
+.dashborad-first-left-container {
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+}
+.dashboard-first-right-container{
+    flex: 1;
+}
+.dashboard-first-left-container-flex {
+    display: flex;
+    justify-content: space-between;
+}
+.dashboard-first-left-container-flex-second {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+.dashboard-first-right-container {
+    margin-left: 1rem;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 1rem;
+}
+.dashboard-first-right-container-p p {
+    margin: 0;
+    padding: 0.5rem;
+}
+.dashboard-first-right-map {
+    display: flex;
+    padding: 0.5rem;
+    justify-content: space-between;
+    
+}
+.dashboard-first-right-map-postname, .dashboard-first-right-map-category, .dashboard-first-right-map-username {
+    width: 10rem;
+}
+.dashboard-first-right-map-username {
+    text-align: right;
+}
+.dashboard-p-color {
+    color: #838383;
+}
+.dashboard-second-container {
+    padding: 0.5rem 0;
+}
+.dashboard-first-boxes-background {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 1rem;
+    width: 15rem;
+    border: 1px solid #EDEEF0;
+    
+    height: 5rem;
+}
+.dashboard-first-container-boxes {
+    display: flex;
+    justify-content: space-between;
+}
+.dashboard-first-boxes-background-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+.dashboard-first-boxes-span {
+    font-size: 14px;
+    color: #97A3AF
+}
+.dashboard-first-boxes-background-container-second-image {
+    display: flex;
+    align-items: center;
+}
+.dashboard-first-boxes-background-container-second-image {
+    padding: 1rem;
+    border-radius: 50%;
+}
+.red-admin-box {
+    background-color: rgb(236,76,71);
+
+}
+.dashboard-first-boxes-background-container-second-image svg {
+    color: #fff;
+}
+.dashboard-first-boxes-total {
+    font-size: 15px;
+    padding: 0.3rem 0.2rem;
+}
+.green-admin-box {
+    background-color: rgb(71,184,129);
+}
+.blue-admin-box {
+    background-color: #1070CA;
+}
+.dashboard-datagrid-container {
+    padding: 1rem 0 1rem 0;
+    display: flex;
+    height: 30rem;
+}
+.dashboard-datagrid-users-container {
+    background-color: #fff;
+    flex: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    overflow-y: scroll;
+    
+ 
+
+    padding: 1rem;
+    border: 1px solid #EDEEF0;
+
+}
+.dashboard-datagrid-users-container::-webkit-scrollbar {
+    display: none;
+
+}
+
+.dashboard-datagrid-last-topics-container {
+    flex: 4;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid #EDEEF0;
+
+
+}
+.dashboard-datagrid-padding-lastest {
+    padding: 0 0 1rem 0;
+}
+.test-admin-grid{
+    height:25rem;
+}
+
+.dashboard-datagrid-users-first img {
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.dashboard-datagrid-users-first-container{
+    display: flex;
+    padding: 1rem 0;
+    border-top: 1px solid #e2e2e2;
+    /* align-items: center; */
+
+}
+.dashboard-datagrid-users-second {
+    margin-left: 1rem;
+    overflow: hidden;
+}
+.dashboard-datagrid-users-second p {
+    padding: 0;
+    margin: 0;
+}
+.dashboard-datagrid-users-name {
+    font-size: 15px;
+}
+.dashboard-datagrid-users-email {
+    font-size: 13px;
+    color: #9b9b9b;
+}

@@ -8,7 +8,6 @@
 .forum-profile-width {
     width: 80%;
     height: 80%;
-    border: 1px solid black;
     margin: 0 auto;
 }
 .forum-profile-width-screen {
@@ -27,11 +26,14 @@
 .forum-profile-info-users span {
     font-size: 14px;
 }
-.forum-editprofile-flex-column
+.forum-profile-image {
+    display: flex;
+    flex-direction: column;
+}
 .forum-profile-image img {
-    width: 10rem;
+    width: 12rem;
     object-fit: cover;
-    height: 10rem;
+    height: 12rem;
 }
 .forum-profile-info-users button {
     margin-left: 1rem;
@@ -41,9 +43,7 @@
     border: none;
     border-radius: 5px;
 }
-.forum-profile-image img {
-    width: 5rem;
-}
+
 .userprofile-under {
     width: 60%;
     margin: 4rem auto;
@@ -78,4 +78,15 @@
 .userstatistics-little-spans-rightside a {
     color: black;
     text-decoration: none;
+}
+.forum-roles {
+    margin-top: 0.5rem;
+    text-align: center;
+}
+.registeredRed{
+    color: red;
+    margin: 0;
+}
+.webDeveloper {
+    margin: 0;
 }

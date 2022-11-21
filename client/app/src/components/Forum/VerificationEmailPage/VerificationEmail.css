@@ -1,0 +1,51 @@
+.verify-container {
+    margin-top: 2rem;
+}
+
+.verify-container svg {
+    color: #60BE71;
+    width: 4rem;
+    height: 4rem;
+}
+.verify-icon, .verify-icon-false  {
+    display: flex;
+    justify-content: center;
+}
+.border-line {
+    
+    background-color: rgb(167, 167, 167);
+    width: 40%;
+    margin: 1rem auto;
+    height: 1px;
+    border-radius: 5px;
+
+}
+.verify-emailconfirmed {
+    display: flex;
+    justify-content: center;
+}
+.verify-emailconfirmed p {
+    padding: 0;
+    margin: 0;
+}
+.verify-loginnow {
+    display: flex;
+    margin-top: 1rem;
+    justify-content: center;
+}
+.verify-loginnow button {
+    padding: 0.5rem;
+    background-color: #FF133F;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+
+}
+.verify-loginnow button:hover {
+    background-color: rgb(180, 0, 27);
+}
+.verify-icon-false svg {
+    color: red;
+}

@@ -1,0 +1,135 @@
+.admin-news-grid {
+    padding: 1rem;
+    background-color: #fff;
+}
+.admin-news-first-div-width {
+    width: 10rem;
+}
+.admin-news-first-container {
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+}
+.admin-news-title {
+    padding: 1rem;
+    width: 20rem;
+    outline: none;
+    border: 1px solid rgb(172, 172, 172);
+    border-radius: 8px;
+}
+.admin-news-shortdesc {
+    width: 30rem;
+    padding: 1rem;
+    outline: none;
+    border: 1px solid rgb(172, 172, 172);
+    border-radius: 8px;
+
+}
+.homescreen-news-first-admin {
+    padding: 1rem;
+    word-wrap: break-word;
+    display: flex;
+    border-bottom: 1px solid gray;
+    background-color: #232323;
+
+
+}
+.fullpage-result {
+    background-color: #232323;
+    color: #fff;
+    padding: 1rem;
+}
+.admin-news-second-options {
+    padding: 1rem 0;
+}
+.added-news {
+    background-color: rgb(41, 194, 41);
+    color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+
+}
+.added-news-button {
+    display: flex;
+    justify-content: flex-end;
+}
+.added-news-button button {
+    background-color: #FF133F;
+    padding: 0.5rem 0.8rem;
+    border-radius: 7px;
+    color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.added-news-button button:hover {
+    background-color: rgb(180, 0, 27);
+
+}
+.error-news {
+    background-color: #FF133F;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+ 
+}
+.homescreen-news {
+    background-color: #232323;
+    width: 70%;
+    margin: 0 auto;
+    border-radius: 10px;
+    padding: 1rem;
+}
+.homescreen-news-first {
+    padding: 1rem;
+    display: flex;
+    border-bottom: 1px solid gray;
+
+}
+.homescreen-image {
+    width: 10rem;
+}
+.homescreen-image img {
+    width: 10rem;
+    height: 8rem;
+    object-fit: cover;
+}
+.homescreen-text {
+    width: 41rem;
+    margin-left: 2rem;
+}
+.homescreen-text-title p {
+    margin: 0;
+    padding: 0;
+    color: #BABABA;
+    font-size: 20px;
+}
+.homescreen-text-title a {
+    text-decoration: none;
+}
+.homescreen-author {
+    color: #FF0030;
+}
+.homescreen-text-author {
+    margin-top: 0.2rem;
+}
+.homescreen-timeago {
+    color: #BABABA;
+    margin-left: 0.5rem;
+}
+
+
+/* .homescreen-short-desc {
+
+} */
+.homescreen-short-desc {
+    font-size: 14px;
+}
+.homescreen-text-test {
+    background-image: linear-gradient(rgba(255, 255, 255, 0) 10%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0) 90);
+    color: #fff;
+    height: 5rem;
+    width: 5rem;
+    line-height: 20px;
+}

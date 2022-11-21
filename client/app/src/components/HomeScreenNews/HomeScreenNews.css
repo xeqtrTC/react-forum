@@ -1,0 +1,26 @@
+.homescreen-news-fullpage {
+    background-color: #232323;
+    padding: 1rem;
+    border-radius: 7px;
+    color: #fff;
+
+}
+.homescreen-news-fullpage-container {
+    width: 80%;
+    margin: 0 auto;
+}
+.homescreen-fullpage-whouploaded {
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+.homescreen-fullpage-whouploaded span {
+    padding: 0 0.2rem
+}
+.whoposted-span {
+    color: #fff;
+}
+.whoposted-user {
+    color: #FF0030;
+
+}
