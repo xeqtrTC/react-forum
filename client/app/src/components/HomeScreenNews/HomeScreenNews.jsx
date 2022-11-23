@@ -5,7 +5,7 @@ import Footer from '../Footer/Footer'
 import Header from '../header/Header'
 import LoadingBox from '../LoadingBox/LoadingBox';
 import parse from 'html-react-parser';
-import { format, formatDistance, formatRelative, subDays, parseISO, compareAsc   } from 'date-fns'
+import { format, parseISO   } from 'date-fns'
 
 import './HomeScreenNews.css';
 

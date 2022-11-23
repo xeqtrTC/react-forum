@@ -7,11 +7,22 @@ const passport = require('../PassportAuthentication/passport');
 const nodemailer = require('nodemailer');
 const e = require('express');
 const userRouter = express.Router();
-const format = require('date-fns/format')
+const format = require('date-fns/format');
+const { RedisFunctionFlags } = require('@redis/client/dist/lib/commands/generic-transformers');
+const redis = require('redis')
 
+const redisClient = redis.createClient();
 // const urltest = {
 //     html: `<img src="https://i.ibb.co/DWMwkFC/cover.jpg" object-fit="cover" width="100%" height="300px" /><p style="color: black; margin-top: 20px;">You requested for email verification, kindly use this <a style="background-color: #2AAAF3; padding:10px; text-decoration: none; border-radius: 5px; color:white; font-weight: 500;" href=${url}>click here</a> <p style="text-align: center; color: black; font-weight: 600; margin-top: 20px;">Blackjack OGC 2022</p>`
 // }
+
+
+(async () => {
+  
+    redisClient.on("error", (error) => console.error(`Error : ${error}`));
+  
+    await redisClient.connect();
+  })();
 
 const sendEmailAccountVerificatedByAdmin = (username, email, url) => {
     const mail = nodemailer.createTransport({
@@ -308,7 +319,8 @@ const verifyEmail = (req, res) => {
 
 
 const handleLoginPassport = (req, res, next) => {
-    passport.authenticate('local', (err, user, info) => {
+    console.log('usao sam ovde brate')
+    passport.authenticate('Forum', (err, user, info) => {
         if(err) {
             console.log(err);
             return;
@@ -2030,29 +2042,44 @@ const getOverWatchUsers = (req, res) => {
     }
 }
 
-const newsList = (req, res) => {
+const newsList = async(req, res) => {
         const sql = 'SELECT * FROM news';
         const sql2 = 'SELECT b_bandate from banned WHERE b_username = ?';
 
-        console.log(req.sessionID);
+        console.log('ACAb');
 
-        pool.query(sql, (err, result) => {
-            if(result.length > 0) {
-                // pool.query(sql2, [req.user.username], (err, results) => {
-                //     if(results) {
-                //         console.log(format(new Date(), 'MM/dd/yyyy'));
-                //     }
-                // } )
-                return res.status(200).json(result);
+        try {
+            const value = await redisClient.get(`newsList`)
+            console.log(value);
+            if(value) {
+                res.status(200).json(JSON.parse(value))
             } else {
-                console.log(err);
+                pool.query(sql, async(err, result) => {
+                    if(result.length > 0) {
+                        // pool.query(sql2, [req.user.username], (err, results) => {
+                        //     if(results) {
+                        //         console.log(format(new Date(), 'MM/dd/yyyy'));
+                        //     }
+                        // } )
+                        await redisClient.set(`newsList`, JSON.stringify(result))   
+                        console.log(result);                       
+
+                        return res.status(200).json(result);
+                    } else {
+                        console.log(err);
+                    }
+                })
+            
             }
-        })
-    
+        } catch (error) {
+            console.log(error);
+        }
+
+        
 
 
+    }
 
-}
 
 
 const insertNews = (req, res) => {
@@ -2061,19 +2088,30 @@ const insertNews = (req, res) => {
         const { valueForQuill, titleOfNews, shortDesc } = req.body;
 
         const sql = 'INSERT INTO news SET ?';
+        const sql2 = 'SELECT * FROM news';
 
-    
+        const testForRedis = {
+            n_title: titleOfNews, 
+            n_shortdesc: shortDesc,
+            n_description: valueForQuill,
+             n_username: req.user.username,
+              n_date: new Date()
+        }
 
         try {
 
-            pool.query(sql, {n_title: titleOfNews, n_shortdesc: shortDesc,n_description: valueForQuill, n_username: req.user.username, n_date: new Date()}, (err, result) => {
+            pool.query(sql, {n_title: titleOfNews, n_shortdesc: shortDesc,n_description: valueForQuill, n_username: req.user.username, n_date: new Date()}, async(err, result) => {
                 if(result.affectedRows > 0) {
+                    pool.query(sql2,async (err, resultOfArray) => {
+                        if(resultOfArray) {
+                            insertIntoOverwatchusers(req.user.username,titleOfNews, 'Added news')
 
-                        insertIntoOverwatchusers(req.user.username,titleOfNews, 'Added news')
+                            await redisClient.set(`newsList`, JSON.stringify(resultOfArray))
 
-
-
-                    return res.status(200).json({ success: true})
+                        return res.status(200).json({ success: true})
+                        }
+                    })
+                        
                 } else {
                     return res.status(401).json({ message: 'Not allowed'})
                 }
@@ -2098,11 +2136,11 @@ const deleteNews = (req, res) => {
 
     
 
-        pool.query(sql, [n_id], (err, result) => {
+        pool.query(sql, [n_id], async(err, result) => {
             if(result.affectedRows > 0) {
 
                 insertIntoOverwatchusers(req.user.username,n_id, 'Deleted news')
-
+                await redisClient.del(`newsList`)
                 return res.status(200).json({ success: true})
             } else {
                 console.log(err);

@@ -1,8 +1,4 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
 import { useUserStateQuery,  } from '../../redux/authApi';
-import { selectCurrentUser, selectImageOfCurrentUser, selectRolesOfCurrentUser, setCredentials } from '../../redux/authSlice';
-import { useInfoAboutUserSocketQuery } from '../../redux/usersApi/usersApi';
 
 function UseAuthHook() {
     const { data, isSuccess, isLoading } = useUserStateQuery();

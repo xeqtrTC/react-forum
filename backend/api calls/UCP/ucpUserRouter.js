@@ -1,13 +1,13 @@
-const pool = require('../../Database/connection')
+const ucpPool = require('../../Database/ucpConnection');
 const bcrypt = require('bcryptjs');
 const passport = require('./UcpPassport/ucppassport')
 
 
 const registerUCPuser = async (req, res) => {
-
+    console.log('usao');
     const { registerStates } = req.body;
     const { characterName, password, confirmPassword, emailAddress, referral } = registerStates
-
+    console.log('aaaaaaaaaaaaaaaaa')
     const sql1 = 'INSERT INTO ucp_users SET ?';
     const sql2 = 'SELECT ucp_username FROM ucp_users WHERE ucp_username = ?';
     const sql3 = 'SELECT ucp_email FROM ucp_users WHERE ucp_email = ?';
@@ -18,15 +18,15 @@ const registerUCPuser = async (req, res) => {
 
 
     try {
-        pool.query(sql2, [characterName], (err, resultOfCheck) => {
+        ucpPool.query(sql2, [characterName], (err, resultOfCheck) => {
             if(resultOfCheck.length > 0) {
                 return res.status(409).json({ message: 'That character name is taken!'})
             } else {
-                pool.query(sql3, [emailAddress], (err, resultOfSecondcheck) => {
+                ucpPool.query(sql3, [emailAddress], (err, resultOfSecondcheck) => {
                     if(resultOfSecondcheck.length > 0) {
                         return res.status(409).json({ message: 'That email is taken!'})
                     } else {
-                        pool.query(sql1, {ucp_username: characterName, ucp_email: emailAddress, ucp_password: hashedPassword, ucp_ipaddress: req.ip}, (err, resultOfInsert) => {
+                        ucpPool.query(sql1, {ucp_username: characterName, ucp_email: emailAddress, ucp_password: hashedPassword, ucp_ipaddress: req.ip}, (err, resultOfInsert) => {
                             if(resultOfInsert.affectedRows > 0) {
                                 return res.status(200).json({ success: true})
                             } else {
@@ -44,7 +44,7 @@ const registerUCPuser = async (req, res) => {
 
 
 const UCPhandleLoginPassport = (req, res, next) => {
-    passport.authenticate('local', (err, user, info) => {
+    passport.authenticate('UCP', (err, user, info) => {
         if(err) {
             console.log(err);
             return;
@@ -82,7 +82,7 @@ const infoAboutUser = (req, res) => {
     console.log(req.user);
     const sql = 'SELECT * FROM ucp_users WHERE ucp_username = ?';
     try {
-        pool.query(sql, [req.user.ucp_username], (err, resultOfCheck) => {
+        ucpPool.query(sql, [req.user.ucp_username], (err, resultOfCheck) => {
             if(resultOfCheck.length > 0) {
                 return res.status(200).json(resultOfCheck)
             } else {

@@ -1,25 +1,28 @@
 const express = require('express');
 const app = express(); // express
-
 const cors  = require('cors');
 const session = require('express-session');
-const MySQLStore = require('express-mysql-session')(session);
+const sessionUCP = require('express-session')
+// const MySQLStore = require('express-mysql-session')(session);
 const bodyParser  = require('body-parser');
-const passport = require('passport');
+// const passport = require('passport');
+const passportUCP = require('./api calls/UCP/UcpPassport/ucppassport')
+const forumPassport = require('./PassportAuthentication/passport');
+// const Passport = require('passport').Passport,
+//     passport = new Passport(),
+//     passportUCP = new Passport();
 const cookieParser  = require('cookie-parser');
 const pool = require('./Database/connection')
-const jwt  = require('jsonwebtoken');
+const ucpPool = require('./Database/ucpConnection');
 const credentials = require('./credentials');
 const dotenv  = 'dotenv';
-const verifyJWT = require('./verifyJWT');
 const usersRouter = require('./api calls/usersRouter');
 const { logger } = require('./logs/logger');
 const errorHandler = require('./logs/errorHandler');
-const verifySession = require('./verifySession')
 const path = require('path')
-const corsOptions = require('./corsOptions');
 const multer = require('multer');
 const sessionStore = require('./database/sessions');
+const sessionStoreUCP = require('./Database/ucpSessions');
 const {cloudinary} = require('./cloudinary');
 const useragent = require('express-useragent')
 const http = require('http');
@@ -28,7 +31,8 @@ const limiter = require('./rateLimiter');
 
 
 
-
+require('./PassportAuthentication/passport')
+require('./api calls/UCP/UcpPassport/ucppassport')
 app.use(logger);
 const socketio = require('socket.io');
 
@@ -41,7 +45,7 @@ const rateLimiter = new RateLimiterMemory(
 )
 
 require('dotenv').config();
-require('./PassportAuthentication/passport')
+
 const port = 5000; // port of the backend server
 const server = http.createServer(app);
 const io = socketio(server, {
@@ -57,7 +61,8 @@ app.set('trust proxy', true)
 app.use(credentials);
 app.use(
     cors({
-         origin: "http://localhost:3000", // allow to server to accept request from different origin
+         origin:[ "http://localhost:3000", "http://localhost:3001"], 
+         // allow to server to accept request from different origin
          methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
          credentials: true, // allow session cookie from browser to pass through
    })
@@ -74,7 +79,19 @@ const sessionMiddleware = session({
   secure: true,
   httpOnly: true,
   sameSite: 'none',
-  cookie: {maxAge: 3600000000 }
+  cookie: {maxAge: 3600000000 },
+  name: 'Forum'
+})
+const sessionMiddlewareSecond = sessionUCP({
+  secret: 'ucp',
+  store: sessionStoreUCP,
+  resave: false,
+  saveUninitialized: false,
+  secure: true,
+  httpOnly: true,
+  sameSite: 'none',
+  cookie: {maxAge: 3600000000 },
+  name: 'Ucp'
 })
 // io.on("connection", (socketio) => {
 //     console.log('client connected', socketio.id)
@@ -91,20 +108,23 @@ app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.json()); 
-app.use(sessionMiddleware)
+// app.use(sessionMiddleware)
+// app.use(sessionMiddlewareSecond)
 
-app.use(cookieParser('forum'));
-app.use(passport.initialize());
-app.use(passport.session());
-
-
-app.use('/refresh', require('./Routes for api calls/refreshtokenapi'))
-app.use('/api/users/unprotected', require('./Routes for api calls/Unprotected Routes/usersRoutes'))
-app.use('/api/ucp/users', require('./Routes for api calls/UCP/userRouter/userRouter'))
+app.use(cookieParser());
+// app.use(passportUCP.initialize());
+// app.use(passportUCP.session());
+// app.use(forumPassport.initialize());
+// app.use(forumPassport.session());
 
 
-app.use('/api/category', require('./Routes for api calls/Protected Routes/posts'));
-app.use('/api/users', require('./Routes for api calls/Protected Routes/users'));
+// app.use('/refresh', require('./Routes for api calls/refreshtokenapi'))
+app.use('/api/users/unprotected', sessionMiddleware, forumPassport.initialize(), forumPassport.session(),  require('./Routes for api calls/Unprotected Routes/usersRoutes'))
+app.use('/api/ucp/users', sessionMiddlewareSecond, passportUCP.initialize(), passportUCP.session(), require('./Routes for api calls/UCP/userRouter/userRouter'))
+
+
+app.use('/api/category', sessionMiddleware, forumPassport.initialize(), forumPassport.session(),  require('./Routes for api calls/Protected Routes/posts'));
+app.use('/api/users', sessionMiddleware, forumPassport.initialize(), forumPassport.session(),  require('./Routes for api calls/Protected Routes/users'));
 
 app.all('*', (req, res) => {
   res.status(404)
@@ -153,8 +173,8 @@ app.use((req, res, next) => {
 const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
 
 io.use(wrap(sessionMiddleware));
-io.use(wrap(passport.initialize()));
-io.use(wrap(passport.session()));
+io.use(wrap(forumPassport.initialize()));
+io.use(wrap(forumPassport.session()));
 
 
    

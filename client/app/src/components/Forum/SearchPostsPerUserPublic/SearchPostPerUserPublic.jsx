@@ -18,8 +18,6 @@ export default function SearchPostPerUserPublic() {
     
     const [color, setColor] = useState(true)
     const { data, isError, isSuccess, error, isLoading} = useGetPublicPostsPerUserQuery(username)
-    const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(15);
     const [keyword, setKeyword] = useState('');
     const [items, setItems] = useState()
 

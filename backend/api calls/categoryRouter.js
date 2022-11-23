@@ -57,15 +57,22 @@ const insertIntoOverwatchuposts = (req, titleOfUpdate, section) => {
     }
 }
 
-const getAllCategories = (req, res) => {
+const getAllCategories = async(req, res) => {
     const sql = 'SELECT * FROM categories'
+
     try {
-        pool.query(sql, (err, rows) => {
-            if(rows) {
-                return res.json(rows);
-    
-            } 
-        })
+        const result = await redisClient.get(`allCategories`)
+        if(result) {
+            return res.status(200).json(JSON.parse(result));
+        } else {
+            pool.query(sql, async(err, rows) => {
+                if(rows) {
+                    await redisClient.set(`allCategories`, JSON.stringify(rows));
+                    return res.status(200).json(result);
+                } 
+            })
+        }
+       
     } catch ( err ) {
         console.log(err)
     }
@@ -83,10 +90,10 @@ const getPostPerCategory = async (req, res) => {
     let paramsOfCategory = req.params.category;
 
     try {
-        // const result = await redisClient.get(`/postsPerCategory/${paramsOfCategory}`)
-        // if(result) {
-        //     res.status(200).json(JSON.parse(result));
-        // } else {
+        const result = await redisClient.get(`/postsPerCategory/${paramsOfCategory}`)
+        if(result) {
+            res.status(200).json(JSON.parse(result));
+        } else {
             pool.query(sql2, [paramsOfCategory],async (err, result) => {
                 console.log('ulazimDVA')
     
@@ -109,7 +116,7 @@ const getPostPerCategory = async (req, res) => {
                     return res.status(401).json({ message: "That category doesn't exist"})
                 }
             })
-        // }
+        }
     } catch (error) {
         console.log(error);
     }
@@ -680,10 +687,10 @@ const getPostsPerSubCategory = async(req, res) => {
     const paramsOfSubCategory = req.params.subtitle
 
     try {
-        // const result = await redisClient.get(`/getPostsPerSubCategory/${paramsOfSubCategory}`)
-        // if(result) {
-        //     res.status(200).json(JSON.parse(result))
-        // } else {
+        const result = await redisClient.get(`/getPostsPerSubCategory/${paramsOfSubCategory}`)
+        if(result) {
+            res.status(200).json(JSON.parse(result))
+        } else {
             pool.query(sql1, [req.params.category], (err, result) => {
                 if(result.length > 0) {
                     const { cid } = result[0];
@@ -709,7 +716,7 @@ const getPostsPerSubCategory = async(req, res) => {
                     res.status(401).json({ message: "That category doesn't exist"})
                 }
             })
-        // }
+        }
     } catch (error) {
         res.status(401);
     }
@@ -802,7 +809,7 @@ const getSubCategories = async(req, res) => {
 
 const moveTopicToAnotherCategory = (req, res) => {
 
-    const { currentvalue, title } = req.body
+    const { currentvalue, title, category } = req.body
 
     const sql = 'UPDATE posts SET category = ? WHERE posttitle = ?';
 
@@ -812,9 +819,9 @@ const moveTopicToAnotherCategory = (req, res) => {
     
     let paramsOfCategory = req.params.category;
 
+    // ehsahs
 
-
-
+    console.log('category', category);
 
     try {
         pool.query(sql, [currentvalue, title], (err, result) => {
@@ -822,8 +829,11 @@ const moveTopicToAnotherCategory = (req, res) => {
                 pool.query(sql1, [currentvalue], async(err, resultOfQuery) => {
                     if(resultOfQuery) {
                         console.log('res', resultOfQuery)
+                
 
                         await redisClient.set(`/postsPerCategory/${currentvalue}`, JSON.stringify(resultOfQuery))
+                        await redisClient.del(`/postsPerCategory/${category}`);
+
                         insertIntoOverwatchuposts(req.user.username, title, `Moved topic to category, category: ${currentvalue}, post title: ${title} `)
 
 
@@ -847,9 +857,9 @@ const moveTopicToAnotherCategory = (req, res) => {
 }
 
 const movePostToSubForum = (req, res) => {
-    const { splitted, title } = req.body
+    const { splitted, title, acabeheh, subtitle } = req.body
     
-    console.log('acab', splitted);
+    console.log('acab', acabeheh);
     const sql = 'UPDATE posts SET idsubcategory = ? WHERE posttitle = ?';
     const sql1 = 'SELECT subid, idcategory FROM subcategories WHERE subtitle = ?';
     const sql2 = 'SELECT title from categories where cid = ?'
@@ -877,6 +887,10 @@ const movePostToSubForum = (req, res) => {
                                         
                                                 await redisClient.set(`/getPostsPerSubCategory/${splitted}`, JSON.stringify(resultOfQuery))
                                                 // `/getPostsPerSubCategory/${paramsOfCategory}`
+                                                await redisClient.del(`/postsPerCategory/${acabeheh}`)
+                                                if(subtitle !== undefined) {
+                                                    await redisClient.del(`/getPostsPerSubCategory/${subtitle}`)
+                                                }
 
                                                 return res.status(200).json(results[0].title)
                                             }
@@ -915,11 +929,11 @@ const selectThemePerCategory = async(req, res) => {
     const paramsOfCategory = req.params.category
 
     try {
-        // const resultOfRedis = await redisClient.get(`/themesPerCategory/${paramsOfCategory}`)
+        const resultOfRedis = await redisClient.get(`/themesPerCategory/${paramsOfCategory}`)
 
-        // if(resultOfRedis) {
-        //     res.status(200).json(JSON.parse(resultOfRedis))
-        // } else {
+        if(resultOfRedis) {
+            res.status(200).json(JSON.parse(resultOfRedis))
+        } else {
             pool.query(sql, [paramsOfCategory], async(err, result) => {
                 if(result) {
 
@@ -931,7 +945,7 @@ const selectThemePerCategory = async(req, res) => {
                     console.log(err);
                 }
             })
-        // }
+        }
     } catch (error) {
         console.log(error);
         res.status(500);
@@ -951,11 +965,11 @@ const getPostsPerTheme = async(req, res) => {
     const paramsOfCategory = req.params.category
 
     try {
-    //     const resultOfRedis = await redisClient.get(`/postsPerTheme/${paramsOfCategory}`);
-    //     if(resultOfRedis) {
-    //         res.status(200).json(JSON.parse(resultOfRedis));
+        const resultOfRedis = await redisClient.get(`/postsPerTheme/${paramsOfCategory}`);
+        if(resultOfRedis) {
+            res.status(200).json(JSON.parse(resultOfRedis));
 
-    //     } else {
+        } else {
             pool.query(sql, [paramsOfCategory], async(err, rows) => {
                 if(rows) {
 
@@ -966,7 +980,7 @@ const getPostsPerTheme = async(req, res) => {
                     console.log(err);
                 }
             })
-        // }
+        }
     } catch (error) {
         console.log(error);
         res.status(500);
@@ -1165,7 +1179,7 @@ const addThemeForumPerCategory = (req, res) => {
 
 
 }
-const getThemesPerCategory = (req, res) => {
+const getThemesPerCategory = async(req, res) => {
 
 
     const sql1 = 'SELECT theme_name FROM themes WHERE theme_category = ?';

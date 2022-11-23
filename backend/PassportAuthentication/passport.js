@@ -1,6 +1,7 @@
 
 const localStrategy = require('passport-local').Strategy;
-const passport = require('passport');
+const passport = require('passport').Passport;
+const forumPassport = new passport();
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -47,7 +48,7 @@ const limiterConsecutiveFailsByUsernameAndIP = new RateLimiterRedis({
   const getUsernameIPkey = (username, ip) => `${username}_${ip}`;
 
 
-passport.use(new localStrategy({
+  forumPassport.use('Forum', new localStrategy({
     usernameField: 'username',
     passwordField: 'password',
     passReqToCallback : true
@@ -180,19 +181,19 @@ passport.use(new localStrategy({
     }))
 
     
-passport.serializeUser((user, done) => {
+    forumPassport.serializeUser((user, done) => {
     done(null, user.uid)
 })
 
-passport.deserializeUser((id, done) => {
+forumPassport.deserializeUser((id, done) => {
     try {
         pool.query('SELECT * FROM users INNER JOIN roles ON users.username = roles.roleusername WHERE uid = ?', [id], (err, rows) => {
-            done(err, rows[0])
+            return done(err, rows[0])
         })
     } catch ( error ){
-
+console.log(error);
     }
     
 })
 
-module.exports = passport;
+module.exports = forumPassport;

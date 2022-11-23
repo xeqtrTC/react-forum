@@ -27,7 +27,8 @@ import { RequireRoles } from '../../Hooks/RequireRoles';
 export default function ForumSubForumPagePosts({}) {
     const dispatch = useDispatch();
     const user = useSelector(selectCurrentUser);
-    const { category, title } = useParams();
+    const { category, title, subtitle } = useParams();
+    console.log('SUBTITLE', subtitle)
     const { roles, username } = UseAuthHook();
     const [text, setText] = useState('');
     const navigate = useNavigate()
@@ -118,7 +119,7 @@ export default function ForumSubForumPagePosts({}) {
 
             if(splitted.length > 0) {
                 try {
-                    const data = await movePostToSubForum({splitted, title}).unwrap();
+                    const data = await movePostToSubForum({splitted, title, subtitle}).unwrap();
                     console.log('dataaaaaaaa', data);
                     const { category  } = data
                     setOnClickLazySub(false)
@@ -213,16 +214,16 @@ export default function ForumSubForumPagePosts({}) {
         e.preventDefault();
 
 
-        try { 
+        // try { 
             
-            const movePost = await movePostToAnotherCategory({currentvalue, title}).unwrap();
-            setOnClickLazy(false);
-            navigate(`/forum/${currentvalue}`)
-            console.log(movePost)
+        //     const movePost = await movePostToAnotherCategory({currentvalue, title}).unwrap();
+        //     setOnClickLazy(false);
+        //     navigate(`/forum/${currentvalue}`)
+        //     console.log(movePost)
 
-        } catch (error) {
-            console.log(data?.error?.message)
-        }
+        // } catch (error) {
+        //     console.log(data?.error?.message)
+        // }
     } 
 
     const lockTheThreadbyAdmin = async (e) => {
@@ -553,7 +554,7 @@ export default function ForumSubForumPagePosts({}) {
                               <PhotoAfterHeader />
                               <div className='forum-page-first'>
                                   <div className='forum-page-full'>
-                                      <span>{category}</span> <AiOutlineArrowRight /> <span className='spantitle'>{title}</span>
+                                      <span>{category}</span> <AiOutlineArrowRight /> <span className='spantitle'>{subtitle}</span> <AiOutlineArrowRight /> <span className='spantitle'>{title}</span>
                                   </div>
                               </div>
                                 

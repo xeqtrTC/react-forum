@@ -29,7 +29,7 @@ function ForumPagePosts({ userId, category }) {
                                             <Link to={`/forum/${myPost.category}/${myPost.posttitle}`} state={myPost.isLocked}> <p className='community-category-name'>{myPost.posttitle} </p></Link> 
                                             
                                         </div>
-                                        <span className='forum-page-by'>by:</span> <Link to={`/forum/userprofile/${myPost.postusername}`}><span className='forum-page-user'>{myPost.postusername}</span></Link> <span className='forum-page-by'>{format(parseISO(myPost.postdate), "MMMM Qo, yyyy, H:m a")}</span>
+                                        <span className='forum-page-by'>by:</span> <Link to={`/forum/userprofile/${myPost.postusername}`}><span className='forum-page-user'>{myPost.postusername}</span></Link> <span className='forum-page-by'>{format(parseISO(myPost.postdate), "do MMM, H:m a")}</span>
                                     </div>
                                     <div className='forum-screen-last-post'>
                                         <div className='forum-screen-last-post-p'>

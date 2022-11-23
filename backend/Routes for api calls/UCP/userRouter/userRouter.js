@@ -1,10 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const ucpUserRouter = require('../../../api calls/UCP/ucpUserRouter');
 
-const userRouter = require('../../../api calls/UCP/ucpUserRouter')
-
-
-// router.route('/registerUser').post(userRouter.registerUCPuser)
-// router.route('/loginUser').post(userRouter.UCPhandleLoginPassport)
-// router.route('/infoAboutUser').get(userRouter.infoAboutUser);
+router.route('/registerUser').post(ucpUserRouter.registerUCPuser);
+router.route('/loginUser').post(ucpUserRouter.UCPhandleLoginPassport)
+router.route('/infoAboutUser').get(ucpUserRouter.infoAboutUser)
 module.exports = router;

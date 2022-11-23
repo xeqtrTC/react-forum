@@ -66,7 +66,6 @@ export default function EditUserProfile() {
 
     const [usernameValue, setValueUsername] = useState('');
     const [validUsername, setValidUsername] = useState(false);
-    const [focusUsername, setFocusUsername] = useState(false);
 
     const [emailValue, setEmailValue] = useState('');
     const [validEmail, setValidEmail] = useState(false);
@@ -144,7 +143,7 @@ export default function EditUserProfile() {
             setLocationState(data?.resultInfo.location)
             setEmailValue(data?.resultInfo.email);
         }
-    }, [isSuccess])
+    }, [isSuccess, data?.resultInfo.steamtag, data?.resultInfo.location, data?.resultInfo.email])
 
 
 
@@ -209,7 +208,7 @@ export default function EditUserProfile() {
 
             if(!v1) {
                 setError('Incorrect form of password')
-            } else if (confirmPasswordValue != passwordValue) {
+            } else if (confirmPasswordValue !== passwordValue) {
                 setError('Passwords do not match')
             } else {
                 try {
@@ -372,7 +371,7 @@ console.log(image);
 
             return () => clearTimeout(timer)
         }
-    }, [editUser, successUpdatePassword])
+    }, [editUser, successUpdatePassword, editProfile])
 
 
     let overviewButton;

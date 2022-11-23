@@ -1,36 +1,26 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import Header from '../../header/Header';
 import { useParams, Link } from 'react-router-dom';
-import { TbBrandPagekit } from 'react-icons/tb';
 import Footer from '../../Footer/Footer';
 import { useRemoveSubForumMutation, useRemoveThemeMutation, useAddPostPerThemeMutation, useAddThemePerCategoryMutation, useAddSubForumPostMutation, useGetPostsPerThemeQuery, useGetThemePerCategoryQuery, selectPostById, selectPostsPerCategory, useGetPostsPerCategoryQuery, useGetSubCategoriesQuery, useInsertPostInThemeMutation } from '../../../redux/categoryApi';
 import LoadingBox from '../../LoadingBox/LoadingBox';
 import { EditorState, convertToRaw} from 'draft-js';
-import { useNavigate } from 'react-router-dom';
-import { usePostCategoryByUserMutation } from '../../../redux/categoryApi';
-import { Editor } from "react-draft-wysiwyg";
-import draftToHtml from 'draftjs-to-html';
-import { DataGrid } from '@mui/x-data-grid';
-import DateFormat from '../DateFormat';
-import { format, formatDistance, formatRelative, subDays, parseISO, compareAsc   } from 'date-fns'
+
+import { format,  parseISO,   } from 'date-fns'
 
 import './ForumPage.css';
 import PhotoAfterHeader from '../PhotoAfterHeader/PhotoAfterHeader';
-import { RiContactsBookLine } from 'react-icons/ri';
 import ForumPagePosts from './ForumPagePosts';
 import { GoThreeBars } from 'react-icons/go';
 import { MdDeleteForever } from 'react-icons/md'
 import { GrEdit } from 'react-icons/gr'
 import { useEffect } from 'react';
-import { AiOutlineCloseCircle } from 'react-icons/ai';
 import UseAuthHook from '../../Hooks/UseAuthHook';
 import AddSubForum from './AddSubForum';
-import ReactQuillEditor from '../../ReactQuillEditor';
 import AddPost from './AddPost';
 import AddThemeForum from './AddThemeForum';
 import RemoveThemeOrSubForum from './RemoveThemeOrSubForum';
 import { RequireRoles } from '../../Hooks/RequireRoles';
-import RemovePosts from './RemovePosts';
 import AddPostForPerTheme from './AddPostForPerTheme';
 export default function ForumPage() {
     const params = useParams();
@@ -79,12 +69,19 @@ export default function ForumPage() {
 
     const [currentSelectedTheme, setCurrentSelectedTheme] = useState('');
     
-        console.log('ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB', ThemeNameToAdd)
     const { data, isSuccess, error, isLoading } = useGetPostsPerCategoryQuery(category);
     const {data: subData, error: subError, isLoading: subIsLoading, isSuccess: isSuccessSub} = useGetSubCategoriesQuery(category)
     const {data: themeData, error: themeError, isLoading: themeIsloading, isSuccess: isSuccessTheme} = useGetThemePerCategoryQuery(category);
     const {data: postsOfThemeData, error: postsOfThemeDataError, isSuccess: isSuccessPostTheme} = useGetPostsPerThemeQuery(category);
         console.log('data', subData);
+
+    const memoizedData = useMemo(() => data, [data])
+    const subMemoizedData = useMemo(() => subData, [subData])
+    const themeMemoizedData = useMemo(() => themeData, [themeData])
+    const postsOfThemeMemoizedData = useMemo(() => postsOfThemeData, [postsOfThemeData]);
+    console.log('ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB', memoizedData)
+
+
     const [addSubForumPost] = useAddSubForumPostMutation();
     const [addThemePerCategory] = useAddThemePerCategoryMutation();
     const [addPostPerTheme] = useAddPostPerThemeMutation()
@@ -358,7 +355,7 @@ export default function ForumPage() {
         if(addpost) {
             setCurrentSelectedTheme(themeData[0].theme_name)
         }
-    },[addpost])
+    },[addpost, themeData])
    
 
     console.log(posts);
@@ -429,7 +426,7 @@ export default function ForumPage() {
 
     if(addthemeforum) {
         addThemeForumButton = (
-            <AddThemeForum  props={{setValueForQuill, addThemeForumFunctionPost, errorMessage ,valueForQuill, TitleofTheme, PostForTheme, closeAddThemeFunction, setTitleOfTheme, setTitleOfTheme, setPostForTheme}}     />
+            <AddThemeForum  props={{setValueForQuill, addThemeForumFunctionPost, errorMessage ,valueForQuill, TitleofTheme, PostForTheme, closeAddThemeFunction, setTitleOfTheme, setPostForTheme}}     />
 
         )
     }
@@ -506,7 +503,7 @@ export default function ForumPage() {
                             </div>
                         <div className='forum-page-real-post'>
                             {
-                        subData?.map((sub) => {
+                        subMemoizedData?.map((sub) => {
                             const { subid, subdate, subuser, subtitle, subdescription } = sub
                         return (
                             <div key={subid}>
@@ -545,7 +542,7 @@ export default function ForumPage() {
 
     if(themeData?.length > 0)  {
         themeDataButton = (
-            themeData.map((item) => {
+            themeMemoizedData.map((item) => {
                 console.log('itemi', item)
                 return (
                     <div className='forum-page-posts' key={item.themeid}>
@@ -554,7 +551,7 @@ export default function ForumPage() {
             </div>
         <div className='forum-page-real-post'>
             {
-                postsOfThemeData?.map((sub) => {
+                postsOfThemeMemoizedData?.map((sub) => {
                     const { theme_name, theme_postid, theme_postisLocked, theme_postusername , theme_posttitle, theme_postdate } = sub
                    
                     return (
@@ -616,7 +613,7 @@ export default function ForumPage() {
 
     if(isSuccess && isSuccessSub && isSuccessTheme && isSuccessPostTheme) {
 
-        const { ids } = data;
+        const { ids } = memoizedData;
         console.log('ids', ids);
         const forumPagePostsIds = ids?.length ? ids?.map(userId => <ForumPagePosts  userId={userId} category={category} key={userId} />) : null; 
 

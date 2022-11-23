@@ -189,3 +189,100 @@
 20221121	19:15:30	4dce9813-6bb4-4723-a425-9286b921d311	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
 20221121	19:15:31	8da9f0b3-72d0-4a64-82df-58eaaada1252	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
 20221121	19:15:32	3bfb5077-f4d2-41e9-b845-e64472e33b83	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	18:07:41	18ac56e5-3eb7-4abd-8b49-665fa2a9ef54	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	18:35:43	23371bc1-fad0-4f8e-9bf1-e8035c28c395	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	18:39:09	9e476b28-2013-454a-a80f-263b5fb7a6c5	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	18:39:15	9d4f2b68-946f-40df-b0d4-51dd25ac5fee	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	18:41:43	2848fecd-63f7-4265-bc80-c0d2f2ef4d41	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	18:45:06	44783891-beb2-466b-abd8-0d221a3b2216	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	18:51:10	05bdf1b5-5b48-4c3e-855b-8f4ea4627fa4	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	19:14:55	20adeb9e-5093-4fae-a30c-453c6517761e	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	19:16:27	c4ce6703-d084-4ac6-ae4a-c174a6026632	Error: Failed to deserialize user out of session	POST	/api/ucp/users/loginUser	http://localhost:3001
+20221122	19:16:27	63a545fe-906a-447f-a698-d509c20e2d73	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	19:16:50	9a747e0f-06e6-462b-ad5d-da47b81d95e8	Error: Failed to deserialize user out of session	POST	/api/users/logout	http://localhost:3000
+20221122	19:16:50	f2ee345c-c029-4e18-becf-1c730bed85fd	Error: Failed to deserialize user out of session	GET	/api/users/newsList	http://localhost:3000
+20221122	19:20:53	af05ac57-2731-41e4-9b40-340ae12f5dd1	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	19:20:54	3a99d888-65c8-4311-bd86-3af106aae80a	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	19:21:20	c012e904-3c1b-4aea-a0c9-7a9137b0851f	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	19:21:21	b2af7723-bb1d-4ed8-9fd5-2aea163d204a	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	19:21:30	b8c4fb05-a2d8-40ec-a196-d7dc12a27304	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	19:21:49	d8d1a7ed-c1cc-493d-abb0-27f5339180ea	Error: Failed to deserialize user out of session	GET	/api/users/newsList	http://localhost:3000
+20221122	19:22:46	a784c65e-7a76-4ab1-aa03-3e261b2c8497	Error: Failed to deserialize user out of session	GET	/api/users/newsList	http://localhost:3000
+20221122	19:23:21	9742426a-e1c9-468d-9cbf-33c46f962f27	Error: Failed to deserialize user out of session	GET	/api/users/newsList	http://localhost:3000
+20221122	19:24:01	1a649e9e-14e2-48f9-906d-edf86740be7e	Error: Failed to deserialize user out of session	GET	/api/users/newsList	http://localhost:3000
+20221122	19:24:10	13362908-1c55-4c73-99df-fbf48bcf94bb	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	19:24:11	8856a580-f75c-44bf-8a46-adb55ea3c3d4	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	19:26:45	40768016-c4b3-47b3-9f1e-85bba812f046	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	19:26:52	4adc7e9a-19cb-4f99-9246-29c18f84f9b7	Error: Failed to deserialize user out of session	GET	/api/users/newsList	http://localhost:3000
+20221122	19:28:43	eb141d43-4e88-4704-9ca5-085999cbb614	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	19:28:52	db578eac-2b09-41d0-a66f-9c02db90a6fe	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	19:29:07	8f7628ac-d5dc-4642-bb50-75ee9fc251e2	Error: Failed to deserialize user out of session	GET	/api/users/newsList	http://localhost:3000
+20221122	19:29:07	61d8f73a-744c-4b21-9d69-4ee0180603d7	Error: Failed to deserialize user out of session	GET	/api/users/newsList	http://localhost:3000
+20221122	19:30:21	2dc97430-9648-4ed2-9f09-c065df6c3d08	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	19:31:08	c5c44f9c-7ab8-4c18-98ec-11282ee80d29	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	19:31:09	f7f54571-e08b-4d9f-8682-6ff7ede5cdb4	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	19:31:19	54ade3d8-3bc5-4b6b-a5de-b3989a1b738a	Error: Failed to deserialize user out of session	GET	/api/users/newsList	http://localhost:3000
+20221122	20:06:57	4b585e19-f7ef-4926-a811-019da54ec654	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	20:07:20	ea24292b-e735-4685-98b6-33d51e749a4d	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	20:27:43	51c10246-1533-4ea7-898b-372ca159df98	Error: Unknown authentication strategy "ucp"	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	20:28:06	11e2bbde-37b2-4a27-a9d1-a9b87e37e619	Error: Unknown authentication strategy "ucp"	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	20:33:57	3f3e76de-c2df-4101-9d7d-c3937cb9dec9	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	20:34:03	fe9d998f-55c3-464c-a20b-7574b17a682a	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	20:34:12	52c3641a-cc7e-40f2-902b-af6dea8dc7fa	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	20:37:32	bfa785be-05cd-4abe-b6f6-991f2a046fae	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	20:37:35	4125d231-031c-4e9d-a3ac-eaea6e14eab4	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	20:37:45	df70da9e-9eec-4c7d-bc4b-2fac069dcdda	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	20:38:33	e5568b4c-004d-4120-a104-31df66a389f8	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	20:38:46	3d4e1161-19ba-4ee3-891b-f0326065145f	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	20:38:47	482aa368-d31e-40e2-8fbf-143cd6da322a	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	20:38:55	288aa8f6-53a1-42f3-b18f-a70b6d0c093d	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	20:39:53	e75cc948-065e-41c8-a826-27c4457bfef2	Error: Failed to deserialize user out of session	GET	/api/users/stateofuser	http://localhost:3000
+20221122	20:42:01	a97bf428-cdd8-4da5-a587-2040bb7bb59e	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	20:42:10	ed45ff75-70d9-4bab-b4cc-59d69ff4fb42	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	20:42:11	7ebf930a-4db3-4dba-9034-7e0b684f3344	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	20:42:51	81c6383c-7532-4ae3-8bed-d1777781506a	Error: Failed to deserialize user out of session	GET	/api/users/stateofuser	http://localhost:3000
+20221122	20:43:03	3ed6e62a-7116-4fbf-9096-b5c8736fd948	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	20:51:51	e7235548-b6bb-403d-bd09-c469ba99e3b9	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	20:51:52	41ee9895-87f2-4a27-9bc9-5fc607689395	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	20:51:59	e0781e25-621d-4a44-8ebd-50592b469798	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	20:52:12	a6df0a3b-0eb1-424a-b0b2-731195e1702c	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	21:06:21	9d71072a-84ba-495a-bad2-18ac8da3b8db	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	21:06:30	b32d5e0e-d881-4e1c-a748-a91219b8f224	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	21:12:03	3f19708a-38a1-4bf7-a1d9-f3825820b25a	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	21:12:57	950cd0c2-1c96-450f-b4e7-c10b57af5758	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	21:14:04	1db7ef07-cd18-419e-94ec-b5973568bac4	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	21:14:10	9a5afc1b-0e58-4664-8bd0-1110c9a79295	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	21:21:26	5134ce91-8be7-435f-bb9f-df47d5fd10a5	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	21:21:27	78e82970-7194-4e83-99b1-c4c38991463e	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	21:21:34	ef579270-a831-497d-bc17-028af6b0a321	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	21:22:09	b6c64847-8fae-4ebe-a332-fad06a389031	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:38:31	bfac634e-b0d0-40e3-b522-1ed2c64fc586	Error: Failed to deserialize user out of session	GET	/api/users/newsList	http://localhost:3000
+20221122	23:47:42	21d92141-1813-4f38-bc67-5b4e115e358d	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:47:57	5dd9dbc7-934f-4384-aeef-0e49be5cbf92	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:48:04	8bb699cf-11de-45eb-8b59-f182ff70782e	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:50:17	26660dd6-a434-49ba-8915-2d1ef3e83e8c	Error: Login sessions require session support. Did you forget to use `express-session` middleware?	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:50:18	42b6211a-c00b-45ec-87a8-d59e139f1234	Error: Login sessions require session support. Did you forget to use `express-session` middleware?	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:50:49	a83e380e-7805-4feb-a1cb-be07c4d51586	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:50:50	f080edd3-fe08-496c-9a0a-317d4d73594d	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:50:58	49193961-170a-4422-8026-55aaba7f4863	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:51:16	2364be06-a959-4cab-ba0c-29b40e355bfe	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:51:32	96795fd6-3f22-4263-b202-1f0c072ad072	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:51:38	37bcd335-3776-433a-9e0d-576fdc1c7f24	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:51:46	4f37989d-5e89-49da-8417-0eb46d04049a	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:57:41	db72b199-464e-45bc-afe5-28808543b164	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:57:42	d224d3eb-ca7d-4491-9398-4fca36188d8d	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:57:49	7fff5c10-d24f-4ce1-94f1-87fd96cf463e	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:58:26	7edd71c3-4ca0-4edf-be3e-d90b9bb76b2e	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:58:29	9fd77ae7-37a4-41af-add1-d758e9e20e15	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:58:37	04b8036f-3283-48af-967b-610c0805ee5c	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:58:44	77936472-3677-439b-876c-3878d4caafbf	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:59:00	32a3267b-06d4-497a-b719-758913109c6d	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:59:03	9eec900c-8a07-43bf-968b-c2a1a546d7a4	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221122	23:59:09	106c3a0d-fb4f-4d1b-8658-bdc7ce2f4871	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221123	00:00:08	5ffa2c25-7257-4862-8069-c3e50a90324d	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221123	00:00:10	56d20536-a2b7-498c-94a7-dd3e17656ebd	Error: Failed to deserialize user out of session	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221123	00:01:11	10cf5d88-7582-47ec-ae85-587a37a9263b	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221123	00:01:18	3b4ae03c-4f00-4c9e-bc7b-8858841ed6b7	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221123	00:02:07	f036226c-dea1-4f69-bf38-64704844b33e	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221123	00:02:23	70f5068a-8814-4003-a6b7-590cae3fc845	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221123	00:28:29	86dcbeb8-b3de-4d41-9bd2-e4e40fa57b46	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001

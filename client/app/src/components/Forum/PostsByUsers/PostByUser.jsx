@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import Header from '../../header/Header'
 import LoadingBox from '../../LoadingBox/LoadingBox';
 import Footer from '../../Footer/Footer';
@@ -29,6 +29,7 @@ export default function PostByUser({}) {
     const dispatch = useDispatch();
     const user = useSelector(selectCurrentUser);
     const { category, title } = useParams();
+    const acabeheh = category;
     const { roles, username } = UseAuthHook();
     const [text, setText] = useState('');
     const navigate = useNavigate()
@@ -66,6 +67,8 @@ export default function PostByUser({}) {
     const { data, isLoading, isSuccess, isError, error } = useGetPostsPerTitleQuery(title);
     const { data: isLockedPost, isSuccess: isSuccesLocked } = useIsLockedPostQuery(title)
     const [EditWidgetFormState,setEditWidgetFormState] = useState('');
+
+    const memoizedData = useMemo(() => data, [data])
 
     const [reply_contentForEdit, setReply_contentForEdit] = useState('');
     const [reply_id, setReply_id] = useState('');
@@ -116,12 +119,12 @@ export default function PostByUser({}) {
         e.preventDefault();
         
             const splitted = currentvalueSub;
-
+            const valueCategory = category;
             if(splitted.length > 0) {
                 try {
-                    const data = await movePostToSubForum({splitted, title}).unwrap();
+                    const data = await movePostToSubForum({ splitted, title, acabeheh}).unwrap();
                     console.log('dataaaaaaaa', data);
-                    const { category  } = data
+                    // const { category  } = data
                     setOnClickLazySub(false)
                     navigate(`/forum/${data}/subforum/${splitted}`)
                 } catch (error) {
@@ -216,7 +219,7 @@ export default function PostByUser({}) {
 
         try { 
             
-            const movePost = await movePostToAnotherCategory({currentvalue, title}).unwrap();
+            const movePost = await movePostToAnotherCategory({category, currentvalue, title}).unwrap();
             setOnClickLazy(false);
             navigate(`/forum/${currentvalue}`)
             console.log(movePost)
@@ -536,7 +539,7 @@ export default function PostByUser({}) {
 
     if(isSuccess && isSuccesLocked) {
 
-        const { ids } = data
+        const { ids } = memoizedData
         const displayUsers = ids.slice(pagesVisited, pagesVisited + usersPerPage)
           
         console.log(displayUsers)

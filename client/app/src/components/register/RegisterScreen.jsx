@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRegisterMutation } from '../../redux/authApi';
-import { motion , AnimatePresence } from 'framer-motion';
 import './RegisterScreen.css';
 import PasswordStrength from './PasswordStrength.jsx';
 
