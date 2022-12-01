@@ -61,3 +61,67 @@ Kategorije, objave, subforumi, subteme
 
 
   </ul>
+
+  # English
+  
+  Forum and User Control Panel for GTA:SA community.
+
+Forum and UCP are two websites, that talks to eachother on same backend.
+Sessions are different.
+
+# Forum
+
+Categories, Posts, Subforums, Subthemes
+
+  <h4>What user can do</h4>
+
+<ul>
+  <li>Post a post</li>
+  <li>Post a post inside subforum (if allowed)</li>
+  <li>Subthemes</li>
+  <li>Global and private live chat</li>
+  <li>Change picture or password</li>
+  <li>History of IP address that logged on profile</li>
+  <li>History of browser, system etc.. that logged on profile</li>
+  <li>Auto unban</li>
+  <li>Verification of email</li>
+
+
+</ul>
+
+  <h4>What admin can do</h4>
+  
+  <ul>
+  <li>Delete categories</li>
+  <li>Delete posts</li>
+  <li>Lock/unlock posts</li>
+  <li>Moving post to another category</li>
+  <li>Moving post to subforum</li>
+  <li>Delete subforum</li>
+  <li>Delete subthemes</li>
+  <li>Logs of private messages between users.</li>
+  <li>When user registers admin needs to approve his account</li>
+  <li>Edit user</li>
+  <li>Ban/unban user</li>
+  <li>IP address of user</li>
+  <li>Browser, system of user</li>
+  <li>Add/delete roles/permissions</li>
+  <li>Who is current online</li>
+  <li>History of everything that changes on forum</li>
+  <li>Add news</li>
+
+  </ul>
+  
+  # UCP
+  
+  User Control Panel controlling in-game account on website.
+  
+  <ul>
+  <li>When player reports another player it creates new post inside specificated subforum</li>
+   <li>Watch informations about server</li>
+  <li>Watch and edit profile</li>
+
+
+  </ul>
+  
+  
