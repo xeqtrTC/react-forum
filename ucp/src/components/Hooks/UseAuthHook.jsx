@@ -1,22 +1,29 @@
 import React from 'react'
 import { useInfoAboutUserQuery } from '../../redux/infoAboutUser/infoAboutUser'
 
-const useAuthHook = () => {
 
-    const { data, isLoading, isSuccess} = useInfoAboutUserQuery()
+function UseAuthHookUCP() {
+    const { data, isSuccess, isLoading } = useInfoAboutUserQuery();
+    console.log(data);
     if(isLoading) {
-        return true;
+        return true
     }
 
     if(isSuccess) {
-        const { ucp_username } = data[0];
+        
+
+        const { ucp_username } = data
 
        
-        return { ucp_username };
-    }
-    return { ucp_username: ''}
 
- 
+        return {
+            ucp_username
+        }
+
+    }
+
+    return { ucp_username: '', }
+
 }
 
-export default useAuthHook;
+export default UseAuthHookUCP;

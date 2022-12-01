@@ -4,7 +4,7 @@ import Header from '../header/Header';
 import Footer from '../Footer/Footer';
 import { useNewsListQuery } from '../../redux/usersApi/usersApi';
 import LoadingBox from '../LoadingBox/LoadingBox';
-import { format, formatDistance, formatRelative, subDays, parseISO, compareAsc, add    } from 'date-fns'
+import { format,parseISO,  add    } from 'date-fns'
 import { Link } from 'react-router-dom';
 
 export default function Homescreen() {

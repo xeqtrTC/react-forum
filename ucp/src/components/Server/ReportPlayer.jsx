@@ -1,5 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useReducer } from 'react'
+import UseAuthHookUCP from '../Hooks/UseAuthHook';
+import { format } from 'date-fns'
+import { useReportPlayerUCPMutation } from '../../redux/reportPlayerSlice/reportPlayerSlice';
+
 
 const reducer = (state, action) => {
     switch(action.type) {
@@ -45,13 +49,75 @@ const fifth_flip = () => ({
 
 export default function ReportPlayer() {
     const [state, dispatch] = useReducer(reducer, {initialState} )
-    // const [firstPageDiscuss, setFirstPageDiscuss] = useState(true);
-    // const [solveConflict, setSolveConflict] = useState(false);
-    // const [evidenceBroken, setEvidenceBroken] = useState(false);
-    // const [notEnoughEvidence, setNotEnoughEvidence] = useState(false);
-    // const [creatingReports, setCreatingReports] = useState(false);
-    // const [reportPlayer, setReportPlayer] = useState(false);
-    console.log(state);
+    const { ucp_username } = UseAuthHookUCP()
+
+    const [ReportPlayerUCP] = useReportPlayerUCPMutation();
+
+    const [dataOfReport, setDataOfReport] = useState({
+        yourName: '',
+        dateOfIncident: '',
+        timeOfIncident: '',
+        reportedPlayer: '',
+        reasonOfReport: '',
+        describe: '',
+    })
+
+    const [test, setTest ] = useState('');
+    console.log(dataOfReport);
+    
+
+    useEffect(() => {
+        setDataOfReport({ 
+            yourName: ucp_username,
+            dateOfIncident: format(new Date(), 'dd-MM-yyyy'),
+            timeOfIncident: format(new Date(), 'H:m'),
+         })
+    }, [ucp_username])
+
+    const handleChange = (e) => {
+        const type = e.target.type;
+        const name = e.target.name;
+        const value = e.target.value;
+        setDataOfReport(prevData => ({
+            ...prevData,
+            [name]: value
+        }))
+    }
+    
+    const reportPlayerFunction = async(e) => {
+        e.preventDefault();
+
+        const reasonOfReport = dataOfReport.reasonOfReport;
+        const yourName = dataOfReport.yourName
+        const dateOfIncident = dataOfReport.dateOfIncident;
+        const timeOfIncident = dataOfReport.timeOfIncident;
+        const reportedPlayer = dataOfReport.reportedPlayer;
+        const describe = dataOfReport.describe;
+
+        console.log('reASON', reasonOfReport)
+        try {
+            if(dataOfReport) {
+                const { data } = await ReportPlayerUCP({yourName, dateOfIncident, timeOfIncident, reportedPlayer, reasonOfReport, describe});
+                    const { message } = data;
+                    const TEST = data?.message
+                    console.log(data);
+                    console.log(JSON.stringify(data.mesage));
+                    const testacab = JSON.stringify(data.mesage);
+                    console.log(testacab.split(' ').join(' ')); 
+
+                    const secondtest = testacab.split(" ").join(" ")
+
+                    setDataOfReport('');
+
+                    // window.location.replace(`http://localhost:3000/forum?${secondtest}`)
+                    window.location.href = `http://localhost:3000/forum/${data.mesage}`;
+
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     let firstpageDiscussButton = null;
     if(state?.initialState?.firstpage_discuss) {
         firstpageDiscussButton = (
@@ -125,8 +191,10 @@ export default function ReportPlayer() {
     if(state.report_player) {
         report_playerButton = (
             <div>
+                <form onSubmit={reportPlayerFunction}>
                 <div className='border-4 mt-2 flex flex-col border-[#064780] py-2 px-3 bg-[#064780] bg-opacity-5	'>
                 <div className='flex flex-col'>
+                    
                 <span className='text-sm py-1.5'>By submitting this player report, you agree to the following:</span>
                 <span className='text-xs text-[#cccccc]'>- I have contacted the reported player(s) and was unable to resolve it and come to a mutual understanding.</span>
                 <span className='text-xs text-[#cccccc]'>- I have read the corresponding rule-set for the offense I am reporting for.</span>
@@ -144,26 +212,26 @@ export default function ReportPlayer() {
 
                 <div className='flex items-center py-2'>
                     <span className='w-40 font-bold text-sm text-right'>Your name:</span>
-                    <input type='text' className='ml-4 w-full p-2 outline-0 rounded text-black text-sm placeholder: px-5'/>
+                    <input type='text' className='ml-4 w-full p-2 outline-0 rounded text-black text-sm placeholder: px-5' value={dataOfReport.yourName} disabled/>
                 </div>
                 <div className='flex items-center py-2'>
                     <span className='w-40 font-bold text-sm text-right'>Date of incident:</span>
-                    <input type='text' className='ml-4 w-full p-2 outline-0 rounded text-black text-sm placeholder: px-5'/>
+                    <input type='text' name='dateOfIncident' className='ml-4 w-full p-2 outline-0 rounded text-black text-sm placeholder: px-5' value={dataOfReport.dateOfIncident} onChange={handleChange}/>
                 </div>
                 <div className='flex items-center py-2'>
                     <span className='w-40 font-bold text-sm text-right'>Time of  acident:</span>
-                    <input type='text' className='ml-4 w-full p-2 outline-0 rounded text-black text-sm placeholder: px-5'/>
+                    <input type='text' name='timeOfIncident' className='ml-4 w-full p-2 outline-0 rounded text-black text-sm placeholder: px-5' value={dataOfReport.timeOfIncident} onChange={handleChange}/>
                 </div>
                 <div className='flex items-center py-2'>
                     <span className='w-40 font-bold text-sm text-right'>Reported player:</span>
-                    <input type='text' className='ml-4 w-full p-2 outline-0 rounded text-black text-sm placeholder: px-5'/>
+                    <input type='text' name='reportedPlayer' className='ml-4 w-full p-2 outline-0 rounded text-black text-sm placeholder: px-5' onChange={handleChange}/>
                 </div>
                 <div className='flex items-center py-2'>
                     <span className='w-40 font-bold text-sm text-right'>Reason:</span>
-                    <select className='ml-4 w-full p-2 outline-0 rounded text-black text-sm placeholder: px-5 appearance-none'>
+                    <select className='ml-4 w-full p-2 outline-0 rounded text-black text-sm placeholder: px-5 appearance-none' name='reasonOfReport' onChange={handleChange}>
                         <option>Please select..</option>
                         <option></option>
-                        <option>Please select..</option>
+                        <option>Deathmatch</option>
                         <option>Please select..</option>
                         <option>Please select..</option>
                         <option>Please select..</option>
@@ -182,11 +250,12 @@ export default function ReportPlayer() {
                 </div>
                 <div className='flex  py-2'>
                     <span className='w-40 font-bold text-sm text-right'>Describe:</span>
-                    <textarea placeholder='Describe what happend with as much  detail as possible.' className='ml-4 h-28  w-full p-2.5 outline-0 rounded text-black text-sm placeholder: px-5 text-xs'/>
+                    <textarea placeholder='Describe what happend with as much  detail as possible.' name='describe' className='ml-4 h-28  w-full p-2.5 outline-0 rounded text-black text-sm placeholder: px-5 text-xs' onChange={handleChange}/>
                 </div>
                 <button className='bg-[#0E426F] mt-2 hover:bg-[#064780]  text-[#D0D2D3] text-sm font-bold p-2.5 rounded w-full'>Submit appeal</button>
 
             </div>
+            </form>
             </div>
         )
     }

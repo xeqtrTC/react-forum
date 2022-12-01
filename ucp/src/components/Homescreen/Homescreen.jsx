@@ -27,6 +27,18 @@ export default function Homescreen() {
                             asdadas
                             
                         </div>
+                        <p>Report ID:</p>
+                        <span>1321321321</span>
+                        <p>Player Name:</p>
+                        <span>Bosko</span>
+                        <p>Date & Time:</p>
+                        <span>Acab</span>
+                        <p>Reported Player</p>
+                        <span>aseasease</span>
+                        <p>Reason:</p>
+                        <span>hehehehehe</span>
+                        <p>What happend:</p>
+                        <span>asdadsa</span>
                     </div>
                 </div>
                 

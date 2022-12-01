@@ -286,3 +286,10 @@
 20221123	00:02:07	f036226c-dea1-4f69-bf38-64704844b33e	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
 20221123	00:02:23	70f5068a-8814-4003-a6b7-590cae3fc845	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
 20221123	00:28:29	86dcbeb8-b3de-4d41-9bd2-e4e40fa57b46	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/api/ucp/users/infoAboutUser	http://localhost:3001
+20221123	17:06:09	2b1b736b-dc0b-41a9-aa1e-8ad5369b87e6	Error: ENOENT: no such file or directory, stat 'C:\Users\Windows 10\Desktop\react-forum\backend\views\404.html'	GET	/main.47112d69251670f1a2ea.hot-update.json	undefined
+20221123	17:06:10	0897d0b9-eba7-466a-99cb-4d38bc08b91d	Error: Failed to deserialize user out of session	GET	/api/users/newsList	http://localhost:3000
+20221123	17:06:10	4c6f37f4-d8ff-418f-9102-51c032160f6c	Error: Failed to deserialize user out of session	GET	/api/users/getNewsByTitle/profile	http://localhost:3000
+20221123	17:27:16	016c8a6e-494f-4c88-89bb-ded1dd022ace	Error: Failed to deserialize user out of session	GET	/api/users/newsList	http://localhost:3000
+20221123	17:27:47	5959b871-879d-4ee9-8de0-fde81b972062	Error: Failed to deserialize user out of session	GET	/api/users/newsList	http://localhost:3000
+20221123	17:28:08	f9a01a59-4642-4888-a5e5-af689c1bb09f	Error: Failed to deserialize user out of session	GET	/api/users/newsList	http://localhost:3000
+20221123	20:02:32	47fce550-ef5b-478a-8f7f-37e4194b9de1	ReferenceError: popo is not defined	POST	/api/ucp/users/reportPlayer	http://localhost:3001

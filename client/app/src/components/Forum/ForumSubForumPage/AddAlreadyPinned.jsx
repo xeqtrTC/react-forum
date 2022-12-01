@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { EditorState, convertToRaw} from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
-import { Editor } from "react-draft-wysiwyg";
 
 
 import './ForumSubForumPage.css';

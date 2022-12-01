@@ -1,0 +1,92 @@
+.forum-profile-screen {
+    margin-top: 2rem;
+    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    height: 20rem;
+    display: flex;
+    align-items: center;
+}
+.forum-profile-width {
+    width: 80%;
+    height: 80%;
+    margin: 0 auto;
+}
+.forum-profile-width-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.forum-profile-info {
+    margin-left: 10%;
+}
+.forum-profile-info-users  {
+    padding: 0.5rem 0;
+}
+
+.forum-profile-info-users span {
+    font-size: 14px;
+}
+.forum-profile-image {
+    display: flex;
+    flex-direction: column;
+}
+.forum-profile-image img {
+    width: 12rem;
+    object-fit: cover;
+    height: 12rem;
+}
+.forum-profile-info-users button {
+    margin-left: 1rem;
+    cursor: pointer;
+    background-color: none;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
+
+.userprofile-under {
+    width: 60%;
+    margin: 4rem auto;
+    display: flex;
+    justify-content: flex-end;
+}
+.useprofile-right {
+    padding: 0.5rem;
+}
+.userstatistics {
+    font-size: 10px;
+    margin-right: 3rem;
+}
+.useprofile-right {
+    display: flex;
+}
+.userstatistics-little-spans {
+    display: flex;
+    justify-content: space-between;
+}
+.userstatistics-little-spans-leftside {
+    width: 6rem;
+}
+.userstatistics-little-spans-leftside p, .userstatistics-little-spans-rightside p {
+    padding: 0.2rem 0;
+    margin: 0;
+    font-size: 13px;
+}
+.span-b {
+    font-weight: 600;
+}
+.userstatistics-little-spans-rightside a {
+    color: black;
+    text-decoration: none;
+}
+.forum-roles {
+    margin-top: 0.5rem;
+    text-align: center;
+}
+.registeredRed{
+    color: red;
+    margin: 0;
+}
+.webDeveloper {
+    margin: 0;
+}

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useInfoAboutUserQuery } from '../../redux/infoAboutUser/infoAboutUser'
-import useAuthHook from '../Hooks/UseAuthHook'
+import UseAuthHookUCP from '../Hooks/UseAuthHook'
 
 export default function Header() {
-    const { ucp_username } = useAuthHook();
+    const { ucp_username } = UseAuthHookUCP();
 
     console.log(ucp_username)
 

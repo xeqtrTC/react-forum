@@ -4,7 +4,7 @@ import Footer from '../../Footer/Footer';
 import { Link, useParams } from 'react-router-dom';
 import LoadingBox from '../../LoadingBox/LoadingBox';
 import { format,  parseISO   } from 'date-fns'
-
+import './ForumUserPublicProfile.css';
 import { useUserInfoPublicQuery, } from '../../../redux/usersApi/usersApi';
 import PhotoAfterHeader from '../PhotoAfterHeader/PhotoAfterHeader';
 export default function ForumUserPublicProfile() {
@@ -77,7 +77,7 @@ export default function ForumUserPublicProfile() {
                                                       <p>Posts</p>
                                                   </div>
                                                   <div className='userstatistics-little-spans-rightside'>
-                                                      <p>{format(parseISO(date), "MMMM Qo, yyyy, H:mm a")}</p> 
+                                                      <p>{format(parseISO(date), "do MMM, Y,  H:m a")}</p> 
                                                       <p>Yestrday</p>
 
                                                      {postnumber} | <Link to={`/forum/userprofile/${username}/posts`}><span className='span-b'>Search user's posts</span></Link>

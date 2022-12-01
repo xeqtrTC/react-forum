@@ -92,7 +92,7 @@ export default function UserProfile() {
                                                           <p>Posts</p>
                                                       </div>
                                                       <div className='userstatistics-little-spans-rightside'>
-                                                          <p>{format(parseISO(date), "MMMM Qo, yyyy, H:m a")}</p> 
+                                                          <p>{format(parseISO(date), "do MMM, Y,  H:m a")}</p> 
                                                           <p>Yestrday</p>
     
                                                          {postnumber} | <Link to={'/forum/searchposts'}><span className='span-b'>Search user's posts</span></Link>

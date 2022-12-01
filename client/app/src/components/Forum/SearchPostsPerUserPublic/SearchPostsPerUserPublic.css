@@ -1,0 +1,110 @@
+.searchpost-container {
+    width: 80%;
+    margin: 1rem auto;
+}
+.grey-zone {
+    background-color: #F0F0F0;
+    padding: 2rem 0; 
+}
+.grey-zone-90width {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.grey-zone-90width span {
+    font-size: 13px;
+}
+.searchpost-post {
+    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    display: flex;
+    margin-top: 1rem;
+    border: 1px solid #EBEBEB;
+    border-radius: 5px;
+}
+.search-post-leftside {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 1rem ;
+    /* padding: 0.5rem 5rem; */
+    border-right: 1px solid #EBEBEB;;
+}
+.search-post-rightside {
+    flex: 6;
+}
+
+.search-post-leftside-info-things {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0;
+}
+.search-post-leftside-info-things-second-div {
+    word-break: break-all
+
+}
+.search-post-leftside-info-things a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+.search-post-leftside-info-things span {
+    display: flex;
+    align-items: center;
+}
+.search-post-leftside-info-things span, .search-post-leftside-info-things-forum span {
+    font-size: 13px;
+}
+.search-post-rightside-container {
+    padding: 0.5rem 1rem;
+}
+.search-post-user-color {
+    color: #aaaaaa;
+    font-size: 14px;
+}
+.search-post-leftside-info-things-forum {
+    display: flex;
+    justify-content: center;
+    margin: 0.5rem 0 0.5rem 0;
+}
+.search-post-leftside-info-things-forum a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+.color-name-forum {
+    color: #46494f;
+    cursor: pointer;
+    margin-left: 0.2rem;
+}
+.grey-zone-search input {
+    padding: 0.4rem 1rem;
+    border: 1px solid #D8D8D8;
+    border-radius: 5px;
+    outline: none;
+    background-color: #E4E4E4;
+}
+.pagination-container-searchperpost {
+    display: flex;
+    justify-content: flex-end;
+}
+.search-post-rightside-info {
+    word-break: break-all;
+    white-space: pre-wrap;
+}
+
+.date-searchuser-posts {
+    font-size: 12px;
+}
+.search-post-leftside-info-things-acaaaaaaab {
+    display: flex;
+    justify-content: center;
+}
+.user-post-leftside-input {
+    margin-right: 0.3rem;
+}
+.searchuserposts-error-messsage {
+    width: 80%;
+    margin: 0 auto;
+}

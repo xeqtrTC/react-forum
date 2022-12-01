@@ -11,7 +11,7 @@ import parse from 'html-react-parser';
 import { useMemo } from 'react';
 
 
-
+import './SearchPostsPerUserPublic.css';
 export default function SearchPostPerUserPublic() {
     const { username } = useParams();
     console.log(username);
