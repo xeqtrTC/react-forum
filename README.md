@@ -23,6 +23,8 @@ Kategorije, objave, subforumi, subteme
   <li>Istorija pregledača, sistema korisnika</li>
   <li>Auto unban</li>
   <li>Verifikacija emaila</li>
+  <li>Resetovanje passworda</li>
+
 
 
 </ul>
@@ -85,6 +87,7 @@ Categories, Posts, Subforums, Subthemes
   <li>History of browser, system etc.. that logged on profile</li>
   <li>Auto unban</li>
   <li>Verification of email</li>
+  <li>Reset password</li>
 
 
 </ul>
