@@ -2,6 +2,7 @@ const pool = require('../Database/connection')
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const jwtr = require('jwt-redis').default;
 const requestIp = require('request-ip');
 const passport = require('../PassportAuthentication/passport');
 const nodemailer = require('nodemailer');
@@ -12,6 +13,7 @@ const { RedisFunctionFlags } = require('@redis/client/dist/lib/commands/generic-
 const redis = require('redis')
 
 const redisClient = redis.createClient();
+const JWTR = new jwtr(redisClient);
 // const urltest = {
 //     html: `<img src="https://i.ibb.co/DWMwkFC/cover.jpg" object-fit="cover" width="100%" height="300px" /><p style="color: black; margin-top: 20px;">You requested for email verification, kindly use this <a style="background-color: #2AAAF3; padding:10px; text-decoration: none; border-radius: 5px; color:white; font-weight: 500;" href=${url}>click here</a> <p style="text-align: center; color: black; font-weight: 600; margin-top: 20px;">Blackjack OGC 2022</p>`
 // }
@@ -100,7 +102,41 @@ const sendEmailVerification = (email, url) => {
         }
     })
 }
+const sendResetPasswordEmail = (email, url) => {
+    const mail = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.emailID,
+            pass: process.env.passwordID
+        }
+    })
 
+    const mailOptions = {
+        from: 'ksektra1312@gmail.com',
+        to: email,
+        subject: 'Reset password for your account, The Conjured',
+        html:
+        ` 
+        <div style="width: 90%; margin: 0 auto;">
+            <img src="https://i.ibb.co/DWMwkFC/cover.jpg" object-fit="cover" width="100%" height="300px" />
+            <hr  style="margin-top: 40px"/>
+            <p style="text-align: center; color: #666666; font-size: 18px; margin-top: 40px;">Reset password for your account</p>
+            <p style="text-align: center; margin-top: 25px;"><a style="margin-top: 40px; text-align: center; background-color: #428ECC; padding:10px; font-weight: 600; text-decoration: none; border-radius: 5px; color:white; font-weight: 500;" href=${url}>Reset password</a></p>
+            <p style="font-size: 12px; color: #B0B0B0; text-align: center; margin-top: 25px">If you did not request reset password on The Conjured forum, please ignore this email</p>    
+            <p style="padding: 10px; text-align: center; color: black; ">THE CONJURED 2022</p>
+        </div>`
+    }
+    
+    mail.sendMail(mailOptions, (error, info) => {
+        if(error) {
+            console.log(error);
+            return 1
+        } else {
+            console.log(info);
+            return 0
+        }
+    })
+}
 
 const insertIntoOverwatchusers = (req,updatedUsername, section) => {
 
@@ -114,6 +150,7 @@ const insertIntoOverwatchusers = (req,updatedUsername, section) => {
     }
 
 }
+
 
 
 const handleRegisterWithVerification = async (req, res) => {
@@ -208,6 +245,113 @@ const verifyEmail = (req, res) => {
             }
         })
     }
+
+}
+
+const updatedPasswordForgotPassword = async(req, res) => {
+    const { token, password } = req.body;
+    const sql = 'SELECT username FROM users WHERE email = ?';
+    const sql1 = 'UPDATE users SET password = ? WHERE username = ?';
+
+    const salt = await bcrypt.genSalt(12);
+    const hashedPassword = await bcrypt.hash(password, salt)
+
+
+    try {
+        const verificatedToken = await JWTR.verify(token, process.env.jwtsecret);
+
+        if(verificatedToken) {
+            const { jti } = verificatedToken;
+            console.log('jti', jti)
+            pool.query(sql, [jti], (err, resultOfCheck) => {
+                if(resultOfCheck) {
+                    const username = resultOfCheck[0].username;
+                    console.log(username);
+                    console.log(hashedPassword)
+                    pool.query(sql1, [hashedPassword, username], async(err, resultOfUpdate) => {
+                        if(resultOfUpdate) {
+                            const Test = await JWTR.destroy(jti, process.env.jwtsecret);
+                            console.log('false', Test)
+                            return res.status(201).json({ success: true })
+                        } else {
+                            console.log(' ne moze ')
+                        }
+                    })
+
+                } else {
+                    console.log('nema ni ovo')
+                }
+            })
+        } else {
+            console.log('unisten')
+        }
+
+    } catch (error) {
+        return res.status(403).json({ message: 'Invalid link, check your email '})
+        console.log(error);
+    }
+    // if(token) {
+    //   await JWTR.verify(token, process.env.jwtsecret, (err, decoded) => {
+    //         if(err) {
+    //             return res.status(403).json({ message: 'Invalid link'})
+    //         } else {
+    //             const { email } = decoded;
+    //             console.log(email);
+
+                
+    //         }
+    //     })
+    // } else {
+    //     return res.sendStatus(403);
+    // }
+}
+
+const verifyForgotPasswordToken = async(req, res) => {
+
+    const token = req.params.token
+
+    const sql = 'SELECT username FROM users WHERE email = ?';
+
+    const updatePassword = 'UPDATE users SET password = ? WHERE username  = ?';
+
+    // JWTR.verify(token, process.env.secret)
+
+    try {
+        const validEmail = await JWTR.verify(token, process.env.jwtsecret); 
+
+        if(validEmail) {
+            return res.status(201).json({ success: true })
+        }   
+    } catch (error ) {
+        console.log(error)
+        return res.status(403).json({ message: 'Invalid link'})
+    }
+}
+const forgotPassword = async(req, res) => {
+
+    const { email } = req.body;
+    console.log(email, 'email')
+   
+    if(email) {
+        const jti = email;
+        const payload = {
+            jti
+        }
+        console.log('payload', payload)
+    
+        const jwtForEmail = await JWTR.sign(payload, process.env.jwtsecret, { expiresIn: '1h' })
+        console.log('JWT', jwtForEmail)
+        const url = 'http://localhost:3000/resetpassword/' + jwtForEmail;      
+    
+        sendResetPasswordEmail(email, url)
+
+        return res.status(201).json({ success: true });
+    }
+
+
+
+
+
 
 }
 
@@ -2411,6 +2555,9 @@ module.exports = {
     unbanUserFunction,
     getBannedUsersList,
     getBannedHistoryList,
-    whoCurrentlyGotSession
+    whoCurrentlyGotSession,
+    forgotPassword,
+    verifyForgotPasswordToken,
+    updatedPasswordForgotPassword
     
 }

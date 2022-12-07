@@ -233,6 +233,23 @@ export const userSlice = apiSlice.injectEndpoints({
         }),
         whoCurrentlyGotSession: builder.query({
             query: () => '/api/users/whoCurrentlyGotSession'
+        }),
+        forgotPassword: builder.mutation({
+            query: (body) => ({
+                url: '/api/users/forgotPassword',
+                method: 'POST',
+                body: body
+            })
+        }),
+        verifyForgotPasswordToken: builder.query({
+            query: (token) => `/api/users/verifyForgotPasswordToken/${token}`
+        }),
+        updatedPasswordForgotPassword: builder.mutation({
+            query: (body) => ({
+                url: '/api/users/updatedPasswordForgotPassword',
+                method: 'POST',
+                body: body
+            })
         })
     })
 
@@ -240,4 +257,4 @@ export const userSlice = apiSlice.injectEndpoints({
 })
 
 
-export const { useWhoCurrentlyGotSessionQuery ,useGetBannedHistoryListQuery ,useGetBannedUsersListQuery ,useUnbanUserFunctionMutation ,useBanUserFunctionMutation ,useGetNewsByTitleQuery,useDeleteNewsMutation,useNewsListQuery,useAddNewsMutation ,useGetOverWatchPostsQuery,useGetOverWatchUsersQuery ,useInfoAboutUserSocketQuery ,useAddHelperUserMutation ,useAddHelperQueryListUsersQuery ,useLeaderOfHelperQueryQuery, useRemoveRoleForUserMutation ,useUpdateRoleForUserMutation ,useUpdateUserAccountByAdminMutation,useVerifyUserAccountByAdminMutation ,useGetlistOfAccountsToBeApprovedQuery ,useGetcountAdminDashboardQuery ,useGetUsersPrivateMessagesQuery, useGetUserByIdQuery,usePostListQuery ,useUsersListQuery ,useLogoutMutation ,useUserInfoPublicQuery  , useTokenQueryForEmailVerificationQuery ,useUpdateImageMutation, useUpdateEmailOrPasswordMutation ,useUpdateSteamtagorLocationMutation, useUserInfoQuery } = userSlice
+export const { useUpdatedPasswordForgotPasswordMutation ,useVerifyForgotPasswordTokenQuery ,useForgotPasswordMutation ,useWhoCurrentlyGotSessionQuery ,useGetBannedHistoryListQuery ,useGetBannedUsersListQuery ,useUnbanUserFunctionMutation ,useBanUserFunctionMutation ,useGetNewsByTitleQuery,useDeleteNewsMutation,useNewsListQuery,useAddNewsMutation ,useGetOverWatchPostsQuery,useGetOverWatchUsersQuery ,useInfoAboutUserSocketQuery ,useAddHelperUserMutation ,useAddHelperQueryListUsersQuery ,useLeaderOfHelperQueryQuery, useRemoveRoleForUserMutation ,useUpdateRoleForUserMutation ,useUpdateUserAccountByAdminMutation,useVerifyUserAccountByAdminMutation ,useGetlistOfAccountsToBeApprovedQuery ,useGetcountAdminDashboardQuery ,useGetUsersPrivateMessagesQuery, useGetUserByIdQuery,usePostListQuery ,useUsersListQuery ,useLogoutMutation ,useUserInfoPublicQuery  , useTokenQueryForEmailVerificationQuery ,useUpdateImageMutation, useUpdateEmailOrPasswordMutation ,useUpdateSteamtagorLocationMutation, useUserInfoQuery } = userSlice

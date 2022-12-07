@@ -86,7 +86,10 @@ const getPostPerCategory = async (req, res) => {
 
     const sql2 = 'SELECT title from categories where title = ?';
     const sql1 = 'select * from posts as p, categories as c WHERE p.category = c.title AND c.title = ?'
-    
+    const sq3 = 'select * from subcategories, categories WHERE subcategories.idcategory = categories.cid and categories.title = ?'
+    const sql4 = 'SELECT * FROM themes WHERE theme_category = ?';
+    const sql = 'SELECT * FROM themeposts WHERE theme_postcategory = ?';
+
     let paramsOfCategory = req.params.category;
 
     try {
@@ -925,6 +928,11 @@ const movePostToSubForum = (req, res) => {
 
 const selectThemePerCategory = async(req, res) => {
     const sql = 'SELECT * FROM themes WHERE theme_category = ?';
+    const sq2 = 'select * from subcategories, categories WHERE subcategories.idcategory = categories.cid and categories.title = ?'
+    const sql3 = 'SELECT * FROM themes WHERE theme_category = ?';
+    const sql4 = 'SELECT * FROM themes WHERE theme_category = ?';
+    const sql5 = 'SELECT * FROM themeposts WHERE theme_postcategory = ?';
+
 
     const paramsOfCategory = req.params.category
 
@@ -936,7 +944,25 @@ const selectThemePerCategory = async(req, res) => {
         } else {
             pool.query(sql, [paramsOfCategory], async(err, result) => {
                 if(result) {
+                    pool.query(sq2, [paramsOfCategory], (err, resultOfArray) => {
+                        if(resultOfArray) {
+                            pool.query(sql, [paramsOfCategory], (err, resultOfPostsPerTheme) => {
+                                if(resultOfPostsPerTheme) {
 
+                                    const arrayTogether = {
+                                        resultOfPostsPerTheme,
+                                        resultOfArray,
+                                        result
+                                    }
+
+
+
+                                }
+                            })
+                        } else {
+
+                        }
+                    })
                     await redisClient.set(`/themesPerCategory/${paramsOfCategory}`, JSON.stringify(result))
 
                     return res.status(200).json(result);
@@ -1907,6 +1933,65 @@ const deletePostByAdmin = (req, res) => {
     
 }
 
+const sForumAndThemes = (req, res) => {
+        const sql = 'SELECT * FROM themes WHERE theme_category = ?';
+        const sq2 = 'select * from subcategories, categories WHERE subcategories.idcategory = categories.cid and categories.title = ?'
+        const sql3 = 'SELECT * FROM themes WHERE theme_category = ?';
+        const sql4 = 'SELECT * FROM themes WHERE theme_category = ?';
+        const sql5 = 'SELECT * FROM themeposts WHERE theme_postcategory = ?';
+    
+    
+        const paramsOfCategory = req.params.category
+    
+        try {
+        
+                pool.query(sql, [paramsOfCategory], async(err, result) => {
+                    if(result) {
+                        pool.query(sq2, [paramsOfCategory], (err, resultOfArray) => {
+                            if(resultOfArray) {
+                                pool.query(sql5, [paramsOfCategory], (err, resultOfPostsPerTheme) => {
+                                    if(resultOfPostsPerTheme) {
+
+                                        const themeData = result;
+                                        const subData = resultOfArray;
+                                        const postsOfThemeData = resultOfPostsPerTheme
+    
+                                        const arrayTogether = {
+                                            themeData,
+                                            subData,
+                                            postsOfThemeData                                        }
+
+                                        return res.status(200).json(arrayTogether)
+
+                                        
+    
+                                        
+                                    }
+                                })
+                            } else {
+    
+                            }
+                        })
+                    
+            
+                    } else {
+                        console.log(err);
+                    }
+                })
+        } catch (error) {
+            console.log(error);
+            res.status(500);
+    
+        }
+        // try {
+            
+        // } catch (err) {
+            
+        // }
+    
+        
+    }
+
 
 // const addPinnedMessagePerCategory = (req, res) => {
     
@@ -1974,6 +2059,7 @@ module.exports = {
     deletePinnedTheme,
     insertPostInTheme,
     deleteThemeReply,
-    updateReplyThemeContent
+    updateReplyThemeContent,
+    sForumAndThemes
 }
 

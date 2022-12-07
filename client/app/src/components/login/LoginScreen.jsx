@@ -87,7 +87,8 @@ export default function LoginScreen() {
 
                 <div className='login-inputs-links'>
                     <Link to='/register'><p>Create account?</p></Link>
-                    <p>Forgot your password?</p>
+                    <Link to='/resetpassword'><p>Forgot your password?</p></Link>
+
                 </div>
             </div>
             

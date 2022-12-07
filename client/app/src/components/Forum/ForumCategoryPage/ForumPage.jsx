@@ -2,7 +2,7 @@ import React, { useState, useRef, useMemo } from 'react';
 import Header from '../../header/Header';
 import { useParams, Link } from 'react-router-dom';
 import Footer from '../../Footer/Footer';
-import { useRemoveSubForumMutation, useRemoveThemeMutation, useAddPostPerThemeMutation, useAddThemePerCategoryMutation, useAddSubForumPostMutation, useGetPostsPerThemeQuery, useGetThemePerCategoryQuery, selectPostById, selectPostsPerCategory, useGetPostsPerCategoryQuery, useGetSubCategoriesQuery, useInsertPostInThemeMutation } from '../../../redux/categoryApi';
+import { useSForumAndThemesQuery, useRemoveSubForumMutation, useRemoveThemeMutation, useAddPostPerThemeMutation, useAddThemePerCategoryMutation, useAddSubForumPostMutation, useGetPostsPerThemeQuery, useGetThemePerCategoryQuery, selectPostById, selectPostsPerCategory, useGetPostsPerCategoryQuery, useGetSubCategoriesQuery, useInsertPostInThemeMutation } from '../../../redux/categoryApi';
 import LoadingBox from '../../LoadingBox/LoadingBox';
 import { EditorState, convertToRaw} from 'draft-js';
 
@@ -70,16 +70,20 @@ export default function ForumPage() {
     const [currentSelectedTheme, setCurrentSelectedTheme] = useState('');
     
     const { data, isSuccess, error, isLoading } = useGetPostsPerCategoryQuery(category);
-    const {data: subData, error: subError, isLoading: subIsLoading, isSuccess: isSuccessSub} = useGetSubCategoriesQuery(category)
-    const {data: themeData, error: themeError, isLoading: themeIsloading, isSuccess: isSuccessTheme} = useGetThemePerCategoryQuery(category);
-    const {data: postsOfThemeData, error: postsOfThemeDataError, isSuccess: isSuccessPostTheme} = useGetPostsPerThemeQuery(category);
-        console.log('data', subData);
+    const {data: secondData, isSuccess: secondIsSuccess } = useSForumAndThemesQuery(category);
+    // const {data: subData, error: subError, isLoading: subIsLoading, isSuccess: isSuccessSub} = useGetSubCategoriesQuery(category)
+    // const {data: themeData, error: themeError, isLoading: themeIsloading, isSuccess: isSuccessTheme} = useGetThemePerCategoryQuery(category);
+    // const {data: postsOfThemeData, error: postsOfThemeDataError, isSuccess: isSuccessPostTheme} = useGetPostsPerThemeQuery(category);
+        // const { themeData } = secondData;
+
+        console.log('dataEASESA', secondData);
+
 
     const memoizedData = useMemo(() => data, [data])
-    const subMemoizedData = useMemo(() => subData, [subData])
-    const themeMemoizedData = useMemo(() => themeData, [themeData])
-    const postsOfThemeMemoizedData = useMemo(() => postsOfThemeData, [postsOfThemeData]);
-    console.log('ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB', memoizedData)
+    const restOfData = useMemo(() => secondData, [secondData])
+    // const themeMemoizedData = useMemo(() => themeData, [themeData])
+    // const postsOfThemeMemoizedData = useMemo(() => postsOfThemeData, [postsOfThemeData]);
+    // console.log('ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB', memoizedData)
 
 
     const [addSubForumPost] = useAddSubForumPostMutation();
@@ -88,7 +92,7 @@ export default function ForumPage() {
     const [removeTheme] = useRemoveThemeMutation();
     const [removeSubForum] = useRemoveSubForumMutation();
     const [InsertPostInTheme] = useInsertPostInThemeMutation();
-    console.log('DATAAAAAAAAAAAAAAAAAAAA', currentValueThemeNameToAdd);
+    console.log('DATAAAAAAAAAAAAAAAAAAAA', data);
     const [color, setColor] = useState(true)
         
     // console.log(roles.map((item) => {
@@ -101,7 +105,7 @@ export default function ForumPage() {
 
     
 
-    const rowsSub = subData?.map((item) => {
+    const rowsSub = secondData?.subData?.map((item) => {
         const { subid, subdate, subdescription, subtitle, subuser } = item;
         return {
             id: subid,
@@ -112,7 +116,7 @@ export default function ForumPage() {
         }
     })
 
-    const rowsTheme = themeData?.map((item) => {
+    const rowsTheme = secondData?.themeData?.map((item) => {
         const { themeid, theme_name, theme_user, theme_date} = item;
         return {
             id: themeid,
@@ -344,18 +348,20 @@ export default function ForumPage() {
 
 
       useEffect(() => {
+        if(success) {
         const timer = setTimeout(() => {
             setSuccess('');
         }, 2000)
         return () => clearTimeout(timer);
+    }
       }, [success])
 
 
       useEffect(() => {
         if(addpost) {
-            setCurrentSelectedTheme(themeData[0].theme_name)
+            setCurrentSelectedTheme(secondData?.themeData[0].theme_name)
         }
-    },[addpost, themeData])
+    },[addpost, secondData?.themeData])
    
 
     console.log(posts);
@@ -434,6 +440,7 @@ export default function ForumPage() {
     let addpostButton = null;
 
     if(addpost) {
+        const {themeData } = secondData;
         addpostButton = (
             <AddPost props={{themeData, setValueForQuill, valueForQuill, addPostName, currentSelectedTheme,setCurrentSelectedTheme, handleInputAddThemePerPost, addPostPerThemePost, closePostFunction}}  />
 
@@ -447,9 +454,11 @@ export default function ForumPage() {
             <RemoveThemeOrSubForum props={{rowsTheme, columnsTheme, setOpenThemeGrid, addPostPerThemePost, closeRemoveTorS, success, errorMessage, setOpenSubGrid, openSubGrid, columns, rowsSub, openThemeGrid }}  />
         )
     }
-    console.log('TESTTTTTTTTTTTT', postsOfThemeData)
+    // console.log('TESTTTTTTTTTTTT', postsOfThemeData)
     let addPostInThemeButton;
     if(addPostInTheme) {
+        const {themeData, postsOfThemeData } = secondData;
+
         addPostInThemeButton = (
         <AddPostForPerTheme props={{closeAddPostInTheme, addThemeInPostFunction, setCurrentValueThemeToAdd, setValueForQuill, valueForQuill, themeData, postsOfThemeData, setThemeNameToAdd, ThemeNameToAdd}} />
         )
@@ -471,7 +480,7 @@ export default function ForumPage() {
                                                     <li onClick={addThemeFunction}>Add themes</li>
                                                     {
 
-                                                        themeData?.length > 0 ? (
+                                                        secondData?.themeData?.length > 0 ? (
                                                             <>
                                                             <li onClick={addPostFunction}>Add posts for themes</li>
                                                             <li onClick={openAddPostInTheme}>Add posts in theme</li>
@@ -479,12 +488,11 @@ export default function ForumPage() {
                                                         ) : null
 
                                                     }
-
                                                     {
-                                                        themeData.length > 0 || subData.length > 0 ? (
+                                                        secondData?.themeData.length > 0 || secondData?.subData.length > 0 ? (
                                                             <li onClick={removeThemeorSub}>Delete themes or subforums</li>
                                                         ) : null
-                                                    }
+                                                    } 
                                                 </ul>
                                             </div>
                                             ) : null
@@ -495,7 +503,7 @@ export default function ForumPage() {
 
     let subDataLengthButton = null;
 
-    if( subData?.length > 0 ) {
+    if( secondData?.subData?.length > 0 ) {
         subDataLengthButton = (
             <div className='forum-page-posts'>
                             <div className='forum-page-topic'>
@@ -503,7 +511,7 @@ export default function ForumPage() {
                             </div>
                         <div className='forum-page-real-post'>
                             {
-                        subMemoizedData?.map((sub) => {
+                        secondData?.subData?.map((sub) => {
                             const { subid, subdate, subuser, subtitle, subdescription } = sub
                         return (
                             <div key={subid}>
@@ -540,9 +548,9 @@ export default function ForumPage() {
 
     let themeDataButton = null;
 
-    if(themeData?.length > 0)  {
+    if(secondData?.themeData?.length > 0)  {
         themeDataButton = (
-            themeMemoizedData.map((item) => {
+            secondData?.themeData.map((item) => {
                 console.log('itemi', item)
                 return (
                     <div className='forum-page-posts' key={item.themeid}>
@@ -551,7 +559,7 @@ export default function ForumPage() {
             </div>
         <div className='forum-page-real-post'>
             {
-                postsOfThemeMemoizedData?.map((sub) => {
+                secondData?.postsOfThemeData?.map((sub) => {
                     const { theme_name, theme_postid, theme_postisLocked, theme_postusername , theme_posttitle, theme_postdate } = sub
                    
                     return (
@@ -611,9 +619,9 @@ export default function ForumPage() {
         
     )
 
-    if(isSuccess && isSuccessSub && isSuccessTheme && isSuccessPostTheme) {
+    if(isSuccess && secondIsSuccess) {
 
-        const { ids } = memoizedData;
+        const { ids } = data;
         console.log('ids', ids);
         const forumPagePostsIds = ids?.length ? ids?.map(userId => <ForumPagePosts  userId={userId} category={category} key={userId} />) : null; 
 

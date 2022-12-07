@@ -31,6 +31,7 @@ router.route('/getMessageRooms').get(categoryRouter.getMessageRooms);
 router.route('/getMessagesByRoomId/:roomid').get(categoryRouter.getMessagesByRoomId);
 router.route('/getLatestPosts').get(categoryRouter.getLatestPosts);
 router.route('/getpinnedthemepercategoryreplies/:subtitle').get(categoryRouter.getPinnedThemePerCategoryReplies);
+router.route('/sForumAndThemes/:category').get(categoryRouter.sForumAndThemes);
 
 
 // POSTS

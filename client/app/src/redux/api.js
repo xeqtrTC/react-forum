@@ -76,6 +76,6 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 
 export const apiSlice = createApi({
     baseQuery: baseQuery,
-    tagTypes: ['Latestposts','RepliesPerTheme','ThemePinnedData','AdminPostList', 'NewsList','HelperQuery','UserInfo','MessageRooms','PinnedMessages','MessageGlobal', 'Category', 'Title', 'Username', 'PostTitle', 'SubForum', 'SubForumQuery', 'ThemesForCategory'],
+    tagTypes: ['Latestposts', 'sForumAndThemes', 'RepliesPerTheme','ThemePinnedData','AdminPostList', 'NewsList','HelperQuery','UserInfo','MessageRooms','PinnedMessages','MessageGlobal', 'Category', 'Title', 'Username', 'PostTitle', 'SubForum', 'SubForumQuery', 'ThemesForCategory'],
     endpoints: builder => ({}),
 })

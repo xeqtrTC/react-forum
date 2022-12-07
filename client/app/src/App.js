@@ -50,7 +50,6 @@ const News = lazy(() => import( './components/AdminPanel/ADMINISTRATOR/News/AddN
 const RemoveNews = lazy(() => import( './components/AdminPanel/ADMINISTRATOR/News/RemoveNews/RemoveNews'));
 const BannedHistory = lazy(() => import( './components/AdminPanel/Users/BannedHistory/BannedHistory'));
 const CurrentlySession = lazy(() => import( './components/AdminPanel/ADMINISTRATOR/CurrentlySession/CurrentlySession'));
-
 const Homescreen = lazy(() => import('./components/homescreen/homescreen'))
 const UnknownRoute = lazy(() => import('./components/404/Unknown'))
 const HomeScreenNews = lazy(() => import('./components/HomeScreenNews/HomeScreenNews'))
@@ -81,6 +80,8 @@ const BannedUsers = lazy(() => import( './components/AdminPanel/Users/BannedUser
 const QuickSearch = lazy(() => import( './components/AdminPanel/Users/QuickSearch/QuickSearch'));
 const TopicsList = lazy(() => import( './components/AdminPanel/Topics/TopicsList/TopicsList'));
 const AdminUserInfo = lazy(() => import( './components/AdminPanel/Users/UserInfo/AdminUserInfo'));
+const ForgottenPassword = lazy(() => import('./components/Forum/ForgottenPassword/ForgottenPassword'))
+const AskForEmailForgotten = lazy(() => import('./components/Forum/ForgottenPassword/AskForEmailForgotten'))
 
 function App() {
 
@@ -102,9 +103,14 @@ function App() {
 
 
 
+
+
           <Route element={<RequireAuthForLogin />}>
             <Route path='/login' element={<LoginScreen />}/>
             <Route path='/register' element={<RegisterScreen />} />
+            
+          <Route path='/resetpassword/' element={<AskForEmailForgotten /> } />
+          <Route path='/resetpassword/:token' element={<ForgottenPassword /> } /> 
           </Route>
 
 

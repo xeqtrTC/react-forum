@@ -188,7 +188,7 @@ export default function PostByUser({}) {
     }
 
 
-   
+   console.log('VALUEFORQUILL', valueForQuill)
 
     // const indexOfLastPost = currentPage * postsPerPage;
     // const indexofFirstPost = indexOfLastPost - postsPerPage;
@@ -197,13 +197,23 @@ export default function PostByUser({}) {
         e.preventDefault();
 
         try {
-            await postPostbyUser({ valueForQuill, title, category }).unwrap();
-            // dispatch(data);
-            // navigate(`/forum/${category}/${title}`)
-            setValueForQuill('');
+            if(valueForQuill) {
+                await postPostbyUser({ valueForQuill, title, category }).unwrap();
+                // dispatch(data);
+                // navigate(`/forum/${category}/${title}`)
+                setValueForQuill("")
+                if(valueForQuill === "<p><br></p>") {
+                    valueForQuill.replace("")
+                }
+                // setValueForQuill('');
+                // string.replace("<p><br></p>", "");
 
 
 
+
+
+
+            }
 
         } catch (error) {
             console.log('errrrrror', error)
@@ -212,6 +222,13 @@ export default function PostByUser({}) {
         }
 
     }
+
+    // for some reason after update of quill, when state gets cleaned <p><br></p> stays in the state, so useffects cleans it up
+    useEffect(() => {
+        if(valueForQuill === "<p><br></p>") {
+            setValueForQuill("");
+        }
+    }, [valueForQuill, PostbyUser])
 
     const movePostToAnotherCategoryByChoice = async(e) => {
         e.preventDefault();

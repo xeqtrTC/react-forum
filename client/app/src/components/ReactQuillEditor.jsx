@@ -86,12 +86,11 @@ function ReactQuillEditor({ setValueForQuill, valueForQuill }) {
         ["clean"],
       ],
       theme: 'snow',   
-
-      handlers: {
-        image: imageHandler
-      },
-        
+    
     },
+    clipboard: {
+      matchVisual: false
+    }
   };
 
 

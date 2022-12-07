@@ -29,13 +29,13 @@ export function RequireAuth({ allowedRoles }) {
 
 }
 
-export const RequireAuthForLogin = ({ allowedRoles }) => {
+export const RequireAuthForLogin = () => {
   const {  username } = UseAuthHook();
 
   const location = useLocation();
 
     const content = (
-      !username ? <Outlet /> : <Navigate to={-1} state={{from: location}} replace/>
+      !username ? <Outlet /> : <Navigate to={-1} state={{from: location}} replace />
 
     )
 

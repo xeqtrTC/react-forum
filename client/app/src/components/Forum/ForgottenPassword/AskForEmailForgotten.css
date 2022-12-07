@@ -1,0 +1,68 @@
+.forum-page-first {
+    background-color: #F0F0F0;
+}
+
+.forum-page-full {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+.askforemail-container p {
+    padding: 0;
+    margin: 0;
+}
+.askforemail-second-container {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+}
+.forgotpassword-question {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0;
+}
+.forgot-question {
+    text-align: center;
+    font-size: 20px;
+}
+.text-forgot {
+    font-size: 13px;
+    padding: 0.8rem;
+    color: #7F878E;
+
+}
+.forgotpassword-question input {
+    padding: 0.6rem;
+    outline: none;
+    border: 1px solid #CED4DA;
+    border-radius: 5px;
+
+}
+.askforemail-button {
+    padding: 1rem 0;
+    text-align: center;
+}
+.askforemail-button button {
+    background-color: #FF133F;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 0.7rem 1rem;
+    transition: ease-in 0.2s;
+
+    color: #fff;
+}
+.askforemail-button button:hover {
+    background-color: rgb(180, 0, 27);
+}
+.success-email {
+    background-color: rgb(17, 206, 48);
+    padding: 0.7rem;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+}
+.askforemail-button button:disabled {
+    cursor: not-allowed;
+}

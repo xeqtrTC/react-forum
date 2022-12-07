@@ -187,7 +187,7 @@ export const categorySlice = apiSlice.injectEndpoints({
                 body: body
             }),
             invalidatesTags: (result, error, arg) => [
-                { type: 'Title', arg: arg.id  }, ['SubForum']
+                { type: 'Title', arg: arg.id  }, ['sForumAndThemes']
             ], 
         }),
         getThemePerCategory: builder.query({
@@ -209,7 +209,7 @@ export const categorySlice = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: body
             }),
-            invalidatesTags: ['SubForumQuery']
+            invalidatesTags: ['sForumAndThemes']
         }),
         addThemePerCategory: builder.mutation({
             query: (body) => ({
@@ -217,7 +217,7 @@ export const categorySlice = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: body
             }),
-            invalidatesTags: ['ThemesForCategory']
+            invalidatesTags: ['sForumAndThemes']
         }),
         addPostPerTheme: builder.mutation({
             query: (body) => ({
@@ -225,7 +225,7 @@ export const categorySlice = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: body
             }),
-            invalidatesTags: ['ThemesForCategory']
+            invalidatesTags: ['sForumAndThemes']
 
         }),
         removeTheme: builder.mutation({
@@ -234,7 +234,7 @@ export const categorySlice = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: body
             }),
-            invalidatesTags: ['ThemesForCategory']
+            invalidatesTags: ['sForumAndThemes']
         }),
         removeSubForum: builder.mutation({
             query: (body) => ({
@@ -242,7 +242,7 @@ export const categorySlice = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: body
             }),
-            invalidatesTags: ['SubForumQuery']
+            invalidatesTags: ['sForumAndThemes']
         }),
         lastTwentyMessagesGlobal: builder.query({
             query: () => '/api/category/lastmessagesglobal',
@@ -360,7 +360,7 @@ export const categorySlice = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: body
             }),
-            invalidatesTags: ['PinnedMessages']
+            invalidatesTags: ['sForumAndThemes']
         }),
         addAlreadyPinnedMessage: builder.mutation({
             query: (body) => ({
@@ -368,7 +368,7 @@ export const categorySlice = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: body
             }),
-            invalidatesTags: ['ThemePinnedData']
+            invalidatesTags: ['sForumAndThemes']
 
         }),
         getUsersPrivateMessages: builder.query({
@@ -517,6 +517,10 @@ export const categorySlice = apiSlice.injectEndpoints({
                 body: body
             }),
             invalidatesTags: ['RepliesPerTheme']
+        }),
+        sForumAndThemes: builder.query({
+            query: (category) => `/api/category/sForumAndThemes/${category}`,
+            providesTags: ['sForumAndThemes']
         })
 
     }),
@@ -569,7 +573,8 @@ export const {
     useDeletePinnedThemeMutation,
     useInsertPostInThemeMutation,
     useDeleteThemeReplyMutation,
-    useUpdateReplyThemeContentMutation
+    useUpdateReplyThemeContentMutation,
+    useSForumAndThemesQuery
     } = categorySlice;
 
 // returns the query result object

@@ -19,6 +19,7 @@ router.route('/getNewsByTitle/:n_title').get(usersRouter.getNewsByTitle);
 router.route('/getBannedUsersList').get(usersRouter.getBannedUsersList);
 router.route('/getBannedHistoryList').get(usersRouter.getBannedHistoryList);
 router.route('/whoCurrentlyGotSession').get(usersRouter.whoCurrentlyGotSession);
+router.route('/verifyForgotPasswordToken/:token').get(usersRouter.verifyForgotPasswordToken);
 
 
 
@@ -41,6 +42,9 @@ router.route('/addNews').post(usersRouter.insertNews);
 router.route('/deleteNews').post(usersRouter.deleteNews);
 router.route('/banUserFunction').post(usersRouter.banUserFunction);
 router.route('/unbanUserFunction').post(usersRouter.unbanUserFunction)
+router.route('/forgotPassword').post(usersRouter.forgotPassword)
+router.route('/updatedPasswordForgotPassword').post(usersRouter.updatedPasswordForgotPassword);
+
 
 
 module.exports = router;
